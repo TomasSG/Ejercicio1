@@ -97,6 +97,9 @@ write: WRITE CTE_S
 | WRITE ID
 {
 	puts("R11: WRITE -> write id");
+	
+	insertar_polaca($2, &numeracion, &polaca);
+	insertar_polaca(OUTPUT, &numeracion, &polaca);
 }
 ;
 
@@ -111,14 +114,24 @@ int main(int argc, char **argv)
 		return ERROR;
 	}
 	
+	// Inicialización de estructuras y variables
 	crear_lista_ts(&ts);
+	
+	crear_lista_polaca(&polaca);
+	numeracion = 0;
 	
 	yyparse();
 	
-	fclose(yyin);
+	
+	
+	// Cierre de estructuras y variables
+	guardar_lista_en_archivo_polaca(&polaca, PATH_ARCHIVO_INTERMEDIO);
+	vaciar_lista_polaca(&polaca);
 	
 	guardar_lista_en_archivo_ts(&ts, PATH_ARCHIVO_TS); // Solo para testing
 	vaciar_lista_ts(&ts);
+	
+	fclose(yyin);
 	
 	return TODO_BIEN;
 }

@@ -5,7 +5,7 @@
 #define TEXTO_LECTURA "rt"
 #define TEXTO_ESCRITURA "wt"
 
-#define PATH_ARCHIVO_INTERMEDI "./Intermedia.txt"
+#define PATH_ARCHIVO_INTERMEDIO "./Intermedia.txt"
 #define PATH_ARCHIVO_ASSEMBLER "./Final.asm"
 #define PATH_ARCHIVO_TS "./ts.txt" //Solo para testing
 
@@ -42,6 +42,9 @@
 #define CARACTER_ESTANDARIZAR '_'
 
 /* POLACA */
+#define INPUT "READ"
+#define OUTPUT "WRITE"
+
 #define ETIQUETA "_ET_"
 
 #define OPERADOR_LE "<"

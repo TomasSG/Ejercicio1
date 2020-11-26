@@ -27,7 +27,7 @@ int comparacion_polaca(const t_dato_lista_polaca*, const t_dato_lista_polaca*);
 void crear_lista_polaca(t_lista_polaca*);
 void vaciar_lista_polaca(t_lista_polaca*);
 int insertar_ordenado_polaca(t_lista_polaca*, const t_dato_lista_polaca*, t_cmp_polaca);
-void guardar_lista_en_archivo_terceto(t_lista_polaca*, const char*);
+void guardar_lista_en_archivo_polaca(t_lista_polaca*, const char*);
 
 char* buscar_elemento(const t_lista_polaca*, int, int);
 void cambiar_elemento(const t_lista_polaca*, int, const char*);

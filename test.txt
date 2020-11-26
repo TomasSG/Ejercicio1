@@ -1,1 +1,1 @@
-a = posicion(b; [1, 2])
+WRITE a

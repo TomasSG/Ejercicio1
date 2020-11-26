@@ -37,7 +37,7 @@ int comparacion_polaca(const t_dato_lista_polaca *pd1, const t_dato_lista_polaca
     return pd1->nro - pd2->nro;
 }
 
-void guardar_lista_en_archivo_terceto(t_lista_polaca *pl, const char *path)
+void guardar_lista_en_archivo_polaca(t_lista_polaca *pl, const char *path)
 {
 	t_dato_lista_polaca *pd;
 	FILE *pf = fopen(path, TEXTO_ESCRITURA);

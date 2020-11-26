@@ -14,4 +14,6 @@ extern int yylineno;
 extern FILE *yyin;
 
 t_lista_ts ts;
+t_lista_polaca polaca;
+int numeracion;
 #endif
