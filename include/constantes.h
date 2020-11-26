@@ -41,5 +41,26 @@
 #define CARACTER_COMILLA '\"'
 #define CARACTER_ESTANDARIZAR '_'
 
+/* POLACA */
+#define ETIQUETA "_ET_"
+
+#define OPERADOR_LE "<"
+#define OPERADOR_LEQ "<="
+#define OPERADOR_GE	">"
+#define OPERADOR_GEQ ">="
+#define OPERADOR_NE	"<>"
+#define OPERADOR_IGUAL "=="
+
+#define CMP "CMP"
+
+#define BI "BI"
+#define BLT "BLT"
+#define BLE "BLE"
+#define BGT "BGT"
+#define BGE "BGE"
+#define BEQ "BEQ"
+#define BNE "BNE"
+
+#define CANTIDAD_DIGITOS_NUMERO 5
 
 #endif

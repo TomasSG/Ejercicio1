@@ -7,6 +7,7 @@
 #include "./lexico.h"
 #include "./lista_ts.h"
 #include "./lista_polaca.h"
+#include "./gci.h"
 #include "../y.tab.h"
 
 extern int yylineno;
