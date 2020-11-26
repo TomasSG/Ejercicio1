@@ -34,69 +34,69 @@
 
 s: prog 
 {
-	puts("S -> PROG");
+	puts("R0: S -> PROG");
 	puts("COMPILACION EXITOSA");
 }
 ;
 
 prog: sent
 {
-	puts("PROG -> SENT");
+	puts("R1: PROG -> SENT");
 }
 
 | prog sent
 {
-	puts("PROG -> PROG SENT");
+	puts("R2: PROG -> PROG SENT");
 }
 ;
 
-sent: read		{puts("SENT -> READ");}
-| write			{puts("SENT -> WRITE");}
-| asig			{puts("SENT -> ASIG");}
+sent: read		{puts("R3: SENT -> READ");}
+| write			{puts("R3: SENT -> WRITE");}
+| asig			{puts("R3: SENT -> ASIG");}
 ;
 
 read: READ ID
 {
-	puts("READ -> read id");
+	puts("R4: READ -> read id");
 }
 ;
 
 asig: ID ASIGNA posicion
 {
-	puts("ASIG -> id asigna POSICION");
+	puts("R5: ASIG -> id asigna POSICION");
 }
 ;
 
 posicion: POSICION PARA ID PYC CA lista CC PARC
 {
-	puts("POSICION -> posicion para id pyc ca LISTA cc parc");
+	puts("R6: POSICION -> posicion para id pyc ca LISTA cc parc");
 }
 
 | POSICION PARA ID PYC CA CC PARC
 {
-	puts("POSICION -> posicion para id pyc ca cc parc");
+	puts("R7: POSICION -> posicion para id pyc ca cc parc");
 }
 ;
 
 lista: CTE
 {
-	puts("LISTA -> cte");
+	puts("R8: LISTA -> cte");
 }
 
 | lista COMA CTE
 {
-	puts("LISTA -> LISTA coma cte");	
+	puts("R9: LISTA -> LISTA coma cte");	
 }
 ;
 
 write: WRITE CTE_S
 {
-	puts("WRITE -> write cte_s");
+	puts("R10: WRITE -> write cte_s");
 }
 
 | WRITE ID
 {
-	puts("WRITE -> write id");
+	puts("R11: WRITE -> write id");
 }
 ;
 

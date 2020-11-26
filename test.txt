@@ -1,6 +1,1 @@
-a = posicion(b; [1, 2 ,3, 45, 6, 2])
-READ a
-WRITE a
-WRITE "Hola"
-WRITE "Hola Mundo"
-WRITE "Hola Mundo!:"
+a = posicion(b; [1, 2])
