@@ -2,6 +2,11 @@
 #include "./include/cabecera.h"
 %}
 
+%union
+{
+	char *string;
+}
+
 /* PALABRAS RESERVADAS */
 %token WRITE									
 %token POSICION								
@@ -19,9 +24,9 @@
 %token ASIGNA							
 
 /* TOKENS CON FAMILIAS DE LEXEMAS */
-%token ID								
-%token CTE								
-%token CTE_S	
+%token <string> ID								
+%token <string> CTE								
+%token <string> CTE_S	
 
 %start s
 

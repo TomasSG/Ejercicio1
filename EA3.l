@@ -51,11 +51,14 @@ CTE_S									{DELIMITADOR_CTE_S}.*{DELIMITADOR_CTE_S}
 
 {ID}									{
 											insertar_ts(yytext, NULL, NULL, SIN_LONGITUD, &ts);
+											yylval.string = strdup(yytext);
 											return ID;
 										}
 										
 {CTE}									{
-											insertar_ts(agregar_guion_bajo(yytext), INTEGER, yytext, SIN_LONGITUD, &ts);
+											char *s_lexema = agregar_guion_bajo(yytext);
+											insertar_ts(s_lexema, INTEGER, yytext, SIN_LONGITUD, &ts);
+											yylval.string = strdup(s_lexema);
 											return CTE;
 										}
 
@@ -63,6 +66,7 @@ CTE_S									{DELIMITADOR_CTE_S}.*{DELIMITADOR_CTE_S}
 											char *s_sin_comillas = sacar_comillas(yytext);
 											char *s_lexema = estandarizar_cadena(agregar_guion_bajo(s_sin_comillas));
 											insertar_ts(s_lexema, STRING, yytext, strlen(s_sin_comillas), &ts);
+											yylval.string = strdup(s_lexema);
 											return CTE_S;
 										}
 
