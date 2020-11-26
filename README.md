@@ -60,7 +60,7 @@ Reglas:
 11. WRITE → write id
 
 
-##Ejercicio I
+## Ejercicio 1
 
 Hacer un compilador completo que solo se base en la gramática dada y con los siguientes
 requisitos
