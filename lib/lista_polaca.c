@@ -1,13 +1,13 @@
-#include "../include/lista_tercetos.h"
+#include "../include/lista_polaca.h"
 
-void crear_lista_tercetos(t_lista_tercetos *pl)
+void crear_lista_polaca(t_lista_polaca *pl)
 {
     *pl=NULL;
 }
 
-void vaciar_lista_tercetos(t_lista_tercetos *pl)
+void vaciar_lista_polaca(t_lista_polaca *pl)
 {
-    t_nodo_lista_tercetos *pnodo;
+    t_nodo_lista_polaca *pnodo;
     while(*pl)
     {
         pnodo=*pl;
@@ -16,14 +16,14 @@ void vaciar_lista_tercetos(t_lista_tercetos *pl)
     }
 }
 
-int insertar_ordenado_tercetos(t_lista_tercetos *pl, const t_dato_lista_tercetos *pd,t_cmp_tercetos cmp)
+int insertar_ordenado_polaca(t_lista_polaca *pl, const t_dato_lista_polaca *pd,t_cmp_polaca cmp)
 {
-    t_nodo_lista_tercetos *pnodo;
+    t_nodo_lista_polaca *pnodo;
     while(*pl && cmp(pd,&(*pl)->dato)>0)
         pl=&(*pl)->psig;
     if(*pl && cmp(pd,&(*pl)->dato)==0)
         return LISTA_DUPLICADO;
-    pnodo=(t_nodo_lista_tercetos*)malloc(sizeof(t_nodo_lista_tercetos));
+    pnodo=(t_nodo_lista_polaca*)malloc(sizeof(t_nodo_lista_polaca));
     if(!pnodo)
         return LISTA_LLENA;
     pnodo->dato=*pd;
@@ -32,14 +32,14 @@ int insertar_ordenado_tercetos(t_lista_tercetos *pl, const t_dato_lista_tercetos
     return TODO_BIEN;
 }
 
-int comparacion_tercetos(const t_dato_lista_tercetos *pd1, const t_dato_lista_tercetos *pd2)
+int comparacion_polaca(const t_dato_lista_polaca *pd1, const t_dato_lista_polaca *pd2)
 {
     return pd1->nro - pd2->nro;
 }
 
-void guardar_lista_en_archivo_terceto(t_lista_tercetos *pl, const char *path)
+void guardar_lista_en_archivo_terceto(t_lista_polaca *pl, const char *path)
 {
-	t_dato_lista_tercetos *pd;
+	t_dato_lista_polaca *pd;
 	FILE *pf = fopen(path, TEXTO_ESCRITURA);
 	if(pf == NULL)
 	{
@@ -50,73 +50,39 @@ void guardar_lista_en_archivo_terceto(t_lista_tercetos *pl, const char *path)
     while(*pl)
     {
         pd =  &(*pl)->dato;
-		fprintf(pf,"[%d] (%s, %s, %s)\n", pd->nro, pd->s1, pd->s2, pd->s3);
+		fprintf(pf,"[%d] %s\n", pd->nro, pd->s);
         pl = &(*pl)->psig;
     }
 	fclose(pf);
 }
 
-char* buscar_elemento(const t_lista_tercetos *pl, int nro_terceto, int nro_elemento)
+char* buscar_elemento(const t_lista_polaca *pl, int nro_celda, int nro_elemento)
 {
 	while(*pl)
     {
-        if( (*pl)->dato.nro - nro_terceto == 0)
+        if( (*pl)->dato.nro - nro_celda == 0)
 		{
-			if(nro_elemento == PRIMER_ELEMENTO)
-			{
-				return (*pl)->dato.s1;
-			}
-			else if(nro_elemento == SEGUNDO_ELEMENTO)
-			{
-				return (*pl)->dato.s2;
-			}
-			else
-			{
-				return (*pl)->dato.s3;
-			}
+			return (*pl)->dato.s;
 		}
         pl=&(*pl)->psig;
     }
 	return NULL;
 }
 
-void cambiar_elemento(const t_lista_tercetos *pl, int nro_terceto, const char *s ,int nro_elemento )
+void cambiar_elemento(const t_lista_polaca *pl, int nro_celda, const char *s)
 {
 	
 	while(*pl)
     {
-        if((*pl)->dato.nro - nro_terceto == 0)
+        if((*pl)->dato.nro - nro_celda == 0)
 		{
-			if(nro_elemento == PRIMER_ELEMENTO)
+			free((*pl)->dato.s);
+			if(((*pl)->dato.s = strdup(s)) == NULL)
 			{
-				free((*pl)->dato.s1);
-				if(((*pl)->dato.s1 = strdup(s)) == NULL)
-				{
-					puts("Problemas de memoria");
-					exit(ERROR);
-				}
-				return;
+				puts("Problemas de memoria");
+				exit(ERROR);
 			}
-			else if(nro_elemento == SEGUNDO_ELEMENTO)
-			{
-				free((*pl)->dato.s2);
-				if(((*pl)->dato.s2 = strdup(s)) == NULL)
-				{
-					puts("Problemas de memoria");
-					exit(ERROR);
-				}
-				return;
-			}
-			else
-			{
-				free((*pl)->dato.s3);
-				if(((*pl)->dato.s3 = strdup(s)) == NULL)
-				{
-					puts("Problemas de memoria");
-					exit(ERROR);
-				}
-				return;
-			}
+			return;
 			
 		}
         pl=&(*pl)->psig;

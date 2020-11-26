@@ -6,6 +6,7 @@
 #include "./constantes.h"
 #include "./lexico.h"
 #include "./lista_ts.h"
+#include "./lista_polaca.h"
 #include "../y.tab.h"
 
 extern int yylineno;
