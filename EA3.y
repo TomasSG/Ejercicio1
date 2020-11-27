@@ -36,7 +36,7 @@ s: prog
 {
 	puts("R0: S -> PROG");
 	puts("COMPILACION EXITOSA");
-	
+	int nro_celda;
 	
 	
 	/* INSERTAMOS EN TODOS LOS EXIT LOS SALTOS A ESTA ETIQUETA */
@@ -44,7 +44,12 @@ s: prog
 	// Creamos etiqueta para el salto
 	insertar_polaca(crear_etiqueta(numeracion), &numeracion, &polaca);
 	// Por cada elemento en la pila, escribimos en nro de celda actual en dicha celda
-	
+	while(desapilar(&pila_celdas, &nro_celda) != PILA_VACIA)
+	{
+		// Restamos uno a la numeracion porque internamente crear_etiqueta() suma uno a la numeriación. Entonces, si no restaramos
+		// encontrariamos las etiquetas desfasados por uno.
+		cambiar_elemento(&polaca, nro_celda, $3, crear_etiqueta(numeracion - 1));
+	}
 }
 ;
 
@@ -101,7 +106,7 @@ posicion: POSICION PARA ID PYC CA lista CC PARC
 	// exit
 	insertar_polaca(BI, &numeracion, &polaca);
 	insertar_polaca(ELEMENTO_VACIO, &numeracion, &polaca);
-	//Falta apilar
+	apilar(&pila_celdas, &numeracion);
 	// Creamos etiqueta para el salto
 	insertar_polaca(crear_etiqueta(numeracion), &numeracion, &polaca);
 	
@@ -122,7 +127,7 @@ posicion: POSICION PARA ID PYC CA lista CC PARC
 	// exit
 	insertar_polaca(BI, &numeracion, &polaca);
 	insertar_polaca(ELEMENTO_VACIO, &numeracion, &polaca);
-	//Falta apilar
+	apilar(&pila_celdas, &numeracion);
 }
 ;
 
