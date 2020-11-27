@@ -85,7 +85,7 @@ posicion: POSICION PARA ID PYC CA lista CC PARC
 	insertar_polaca(INI_VAR_POS_LEXEMA, &numeracion, &polaca);
 	insertar_polaca(CMP, &numeracion, &polaca);
 	insertar_polaca(BNE, &numeracion, &polaca);
-	insertar_polaca(crear_etiqueta(numeracion + 5), &numeracion, &polaca);
+	insertar_polaca(crear_etiqueta(numeracion + SALTO_VERIFICACION_VAR_POS), &numeracion, &polaca);
 	// WRITE "Elemento no enconctrado"
 	insertar_polaca(MSJ_ERROR_NO_ENCONTRADO_LEXEMA, &numeracion, &polaca);
 	insertar_polaca(OUTPUT, &numeracion, &polaca);
@@ -93,7 +93,11 @@ posicion: POSICION PARA ID PYC CA lista CC PARC
 	insertar_polaca(BI, &numeracion, &polaca);
 	insertar_polaca(ELEMENTO_VACIO, &numeracion, &polaca);
 	//Falta apilar
+	// Creamos etiqueta para el salto
+	insertar_polaca(crear_etiqueta(numeracion), &numeracion, &polaca);
 	
+	
+	// Escribir en nro_celda_aux el nro de celda actual
 	cambiar_elemento(&polaca, _nro_celda_aux, $3);
 }
 
@@ -140,6 +144,8 @@ lista: CTE
 	insertar_polaca(BI, &numeracion, &polaca);
 	insertar_polaca(ELEMENTO_VACIO, &numeracion, &polaca);
 	//Falta apilar
+	// Creamos etiqueta para el salto
+	insertar_polaca(crear_etiqueta(numeracion), &numeracion, &polaca);
 	
 	/* INICIALIZACION DE RESTOS DE VARIABLES */
 	
@@ -178,6 +184,8 @@ lista: CTE
 	insertar_polaca(VAR_ES_PRI, &numeracion, &polaca);
 	insertar_polaca(FIN_VAR_ES_PRI_LEXEMA, &numeracion, &polaca);
 	insertar_polaca(OP_ASIGNACION, &numeracion, &polaca);
+	// Creamos etiqueta para el salto
+	insertar_polaca(crear_etiqueta(numeracion), &numeracion, &polaca);
 }
 
 | lista COMA CTE
@@ -208,6 +216,8 @@ lista: CTE
 	insertar_polaca(VAR_ES_PRI, &numeracion, &polaca);
 	insertar_polaca(FIN_VAR_ES_PRI_LEXEMA, &numeracion, &polaca);
 	insertar_polaca(OP_ASIGNACION, &numeracion, &polaca);
+	// Creamos etiqueta para el salto
+	insertar_polaca(crear_etiqueta(numeracion), &numeracion, &polaca);
 }
 ;
 
