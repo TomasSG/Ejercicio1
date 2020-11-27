@@ -1,5 +1,5 @@
 WRITE "Ingrese un valor pivot mayor o igual a 1: "
 READ pivot
-resul = posicion ( pivot ; [144, 2, 3, 144, 5] )
-WRITE "Elemento encontrado en posición: "
+resul = posicion ( pivot ; [1,584,6,9,6] )
+WRITE "Elemento encontrado en posicion: "
 WRITE resul

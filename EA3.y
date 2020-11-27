@@ -44,7 +44,7 @@ s: prog
 	// Creamos etiqueta para el salto
 	insertar_polaca(agregar_fin_etiqueta(crear_etiqueta(numeracion)), &numeracion, &polaca);
 	// Por cada elemento en la pila, escribimos en nro de celda actual en dicha celda
-	while(desapilar(&pila_celdas, &nro_celda) != PILA_VACIA)
+	while(desapilar(&pila_exit, &nro_celda) != PILA_VACIA)
 	{
 		// Restamos uno a la numeracion porque internamente crear_etiqueta() suma uno a la numeriación. Entonces, si no restaramos
 		// encontrariamos las etiquetas desfasados por uno.
@@ -93,26 +93,31 @@ asig: ID ASIGNA posicion
 posicion: POSICION PARA ID PYC CA lista CC PARC
 {
 	puts("R6: POSICION -> posicion para id pyc ca LISTA cc parc");
+	int nro_celda;
 	
 	/* VERIFICACION DE QUE NO SE ENCONTRO EL ELEMENTO */
 	
-	// if(@posicion == 0)
-	insertar_polaca(VAR_POS, &numeracion, &polaca);
-	insertar_polaca(INI_VAR_POS_LEXEMA, &numeracion, &polaca);
-	insertar_polaca(CMP, &numeracion, &polaca);
-	insertar_polaca(BNE, &numeracion, &polaca);
-	insertar_polaca(crear_etiqueta(numeracion + SALTO_VERIFICACION_VAR_POS), &numeracion, &polaca);
 	// WRITE "Elemento no encontrado"
 	operacion_output(MSJ_ERROR_NO_ENCONTRADO_LEXEMA, &numeracion, &polaca);
 	// exit
-	operacion_exit(&numeracion, &polaca);
-	apilar(&pila_celdas, &numeracion);
-	// Creamos etiqueta para el salto
-	insertar_polaca(agregar_fin_etiqueta(crear_etiqueta(numeracion)), &numeracion, &polaca);
-	
+	operacion_salto_incondicional(&numeracion, &polaca, &pila_exit);
+	apilar(&pila_exit, &numeracion);
 	
 	// Escribir en nro_celda_aux el nro de celda actual
 	cambiar_elemento(&polaca, _nro_celda_aux, $3);
+	
+	
+	/* INSERTAMOS EN TODOS LOS RETURN LOS SALTOS A ESTA ETIQUETA */
+	
+	// Creamos etiqueta para el salto
+	insertar_polaca(agregar_fin_etiqueta(crear_etiqueta(numeracion)), &numeracion, &polaca);
+	// Por cada elemento en la pila, escribimos en nro de celda actual en dicha celda
+	while(desapilar(&pila_return, &nro_celda) != PILA_VACIA)
+	{
+		// Restamos uno a la numeracion porque internamente crear_etiqueta() suma uno a la numeriación. Entonces, si no restaramos
+		// encontrariamos las etiquetas desfasados por uno.
+		cambiar_elemento(&polaca, nro_celda, crear_etiqueta(numeracion - 1));
+	}
 }
 
 | POSICION PARA ID PYC CA CC PARC
@@ -124,8 +129,7 @@ posicion: POSICION PARA ID PYC CA lista CC PARC
 	// WRITE "La lista esta vacia"
 	operacion_output(MSJ_ERROR_LISTA_VACIA_LEXEMA, &numeracion, &polaca);
 	// exit
-	operacion_exit(&numeracion, &polaca);
-	apilar(&pila_celdas, &numeracion);
+	operacion_salto_incondicional(&numeracion, &polaca, &pila_exit);
 }
 ;
 
@@ -152,8 +156,8 @@ lista: CTE
 	// WRITE "El valor debe ser >= 1"
 	operacion_output(MSJ_ERROR_PIVOT_LEXEMA, &numeracion, &polaca);
 	// exit
-	operacion_exit(&numeracion, &polaca);
-	apilar(&pila_celdas, &numeracion);
+	operacion_salto_incondicional(&numeracion, &polaca, &pila_exit);
+	apilar(&pila_exit, &numeracion);
 	// Creamos etiqueta para el salto
 	insertar_polaca(agregar_fin_etiqueta(crear_etiqueta(numeracion)), &numeracion, &polaca);
 	
@@ -163,12 +167,10 @@ lista: CTE
 	operacion_asignacion(VAR_POS, INI_VAR_POS_LEXEMA, &numeracion, &polaca);
 	// @contador = 0
 	_contador = 0;
-	// @es_primera_poiscion = 0;
-	operacion_asignacion(VAR_ES_PRI, INI_VAR_ES_PRI_LEXEMA, &numeracion, &polaca);
 	
 	/* ALGORITMO PARA ENCONTRAR POSICION */
 	
-	algoritmo_busqueda_aparicion($1, &_contador, &numeracion, &polaca);
+	algoritmo_busqueda_aparicion($1, &_contador, &numeracion, &polaca, &pila_return);
 }
 
 | lista COMA CTE
@@ -210,7 +212,8 @@ int main(int argc, char **argv)
 	
 	// Inicialización de estructuras y variables
 	crear_lista_ts(&ts);
-	crear_pila(&pila_celdas);
+	crear_pila(&pila_exit);
+	crear_pila(&pila_return);
 	
 	insertar_ts(MSJ_ERROR_PIVOT_LEXEMA, STRING, MSJ_ERROR_PIVOT_VALOR, strlen(MSJ_ERROR_PIVOT_VALOR) - CANTIDAD_COMILLAS, &ts);
 	insertar_ts(MSJ_ERROR_LISTA_VACIA_LEXEMA, STRING, MSJ_ERROR_LISTA_VACIA_VALOR, strlen(MSJ_ERROR_LISTA_VACIA_VALOR) - CANTIDAD_COMILLAS, &ts);
@@ -237,7 +240,8 @@ int main(int argc, char **argv)
 	guardar_lista_en_archivo_ts(&ts, PATH_ARCHIVO_TS); // Solo para testing
 	vaciar_lista_ts(&ts);
 	
-	vaciar_pila(&pila_celdas);
+	vaciar_pila(&pila_exit);
+	vaciar_pila(&pila_return);
 	
 	fclose(yyin);
 	

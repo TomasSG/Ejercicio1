@@ -127,24 +127,20 @@ void operacion_asignacion(const char *s1, const char *s2, int *pnumeracion, t_li
 	insertar_polaca(s1, pnumeracion, ppolaca);
 }
 
-void operacion_exit(int *pnumeracion, t_lista_polaca *ppolaca)
+void operacion_salto_incondicional(int *pnumeracion, t_lista_polaca *ppolaca, t_pila *ppila)
 {
 	insertar_polaca(BI, pnumeracion, ppolaca);
 	insertar_polaca(ELEMENTO_VACIO, pnumeracion, ppolaca);
+	apilar(ppila, pnumeracion);
 }
 
-void algoritmo_busqueda_aparicion(const char *cte, int *pcontador, int *pnumeracion, t_lista_polaca *ppolaca)
+void algoritmo_busqueda_aparicion(const char *cte, int *pcontador, int *pnumeracion, t_lista_polaca *ppolaca, t_pila *ppila)
 {
 	char s_aux[CANTIDAD_ITOA];
 	
 	// @contador = @contador + 1
 	(*pcontador)++;
-	// if(@es_primera_aparicion == 0 and @aux == #n)
-	insertar_polaca(VAR_ES_PRI, pnumeracion, ppolaca);
-	insertar_polaca(INI_VAR_ES_PRI_LEXEMA, pnumeracion, ppolaca);
-	insertar_polaca(CMP, pnumeracion, ppolaca);
-	insertar_polaca(BNE, pnumeracion, ppolaca);
-	insertar_polaca(crear_etiqueta((*pnumeracion) + SALTO_VERIFICACION_VAR_ES_PRI), pnumeracion, ppolaca);
+	// if(@aux == #n)
 	insertar_polaca(VAR_AUX, pnumeracion, ppolaca);
 	insertar_polaca(cte, pnumeracion, ppolaca);
 	insertar_polaca(CMP, pnumeracion, ppolaca);
@@ -153,8 +149,8 @@ void algoritmo_busqueda_aparicion(const char *cte, int *pcontador, int *pnumerac
 	// @posicion = @contador
 	itoa((*pcontador), s_aux, 10);
 	operacion_asignacion(VAR_POS, agregar_guion_bajo(s_aux), pnumeracion, ppolaca);
-	// @es_primera_aparicion = 1
-	operacion_asignacion(VAR_ES_PRI, FIN_VAR_ES_PRI_LEXEMA, pnumeracion, ppolaca);
+	// Para el return
+	operacion_salto_incondicional(pnumeracion, ppolaca, ppila);
 	// Creamos etiqueta para el salto
 	insertar_polaca(agregar_fin_etiqueta(crear_etiqueta((*pnumeracion))), pnumeracion, ppolaca);
 }

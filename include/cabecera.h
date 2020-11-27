@@ -18,7 +18,7 @@ extern FILE *yyin;
 
 t_lista_ts ts;
 t_lista_polaca polaca;
-t_pila pila_celdas;
+t_pila pila_exit, pila_return;
 int numeracion;
 int _contador;
 int _nro_celda_aux;

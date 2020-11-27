@@ -82,17 +82,12 @@
 // Variables auxiliares
 #define VAR_AUX "@aux"
 #define VAR_POS "@posicion"
-#define VAR_ES_PRI "@es_primera_aparicion"
 
 // Valores de variables auxiliares
-#define INI_VAR_POS_VALOR "0"
-#define INI_VAR_ES_PRI_VALOR "0"
-#define FIN_VAR_ES_PRI_VALOR "1"
+#define INI_VAR_POS_VALOR "0""
 #define VALOR_CRITICO_PIVOT_VALOR "1"
 
 #define INI_VAR_POS_LEXEMA "_0"
-#define INI_VAR_ES_PRI_LEXEMA "_0"
-#define FIN_VAR_ES_PRI_LEXEMA "_1"
 #define VALOR_CRITICO_PIVOT_LEXEMA "_1"
 
 // Mensajes de erroes
@@ -106,9 +101,8 @@
 
 // Saltos 
 #define SALTO_VERIFICACION_PIVOT 5
-#define SALTO_VERIFICACION_VAR_ES_PRI 12
-#define SALTO_VERIFICACION_VAR_AUX 7
-#define SALTO_VERIFICACION_VAR_POS 5
+#define SALTO_VERIFICACION_VAR_AUX 5
+
 
 // Otros
 #define CANTIDAD_DIGITOS_NUMERO 5

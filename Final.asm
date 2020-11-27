@@ -11,15 +11,17 @@ include macros2.asm
 @posicion                          	dd	?
 _0                                 	dd	0.00
 _1                                 	dd	1.00
-_144                               	dd	144.00
 _2                                 	dd	2.00
 _3                                 	dd	3.00
 _4                                 	dd	4.00
 _5                                 	dd	5.00
+_584                               	dd	584.00
+_6                                 	dd	6.00
+_9                                 	dd	9.00
 _El_valor_debe_ser____1            	db	"El valor debe ser >= 1"           , '$', 22 dup (?)
 _Elemento_no_encontrado            	db	"Elemento no encontrado"           , '$', 22 dup (?)
 _La_lista_esta_vacia               	db	"La lista esta vacia"              , '$', 19 dup (?)
-_elemento_encontrado_en_posici__n__	db	"Elemento encontrado en posición: ", '$', 34 dup (?)
+_elemento_encontrado_en_posicion__ 	db	"Elemento encontrado en posicion: ", '$', 33 dup (?)
 _ingrese_un_valor_pivot_mayor_o_igual_a_1__	db	"Ingrese un valor pivot mayor o igual a 1: ", '$', 42 dup (?)
 pivot                              	dd	?
 resul                              	dd	?
@@ -60,7 +62,7 @@ SAHF
 FFREE
 JNE _ET_40
 FLD @aux
-FLD _144
+FLD _1
 FXCH
 FCOM
 FSTSW AX
@@ -81,7 +83,7 @@ SAHF
 FFREE
 JNE _ET_57
 FLD @aux
-FLD _2
+FLD _584
 FXCH
 FCOM
 FSTSW AX
@@ -102,7 +104,7 @@ SAHF
 FFREE
 JNE _ET_74
 FLD @aux
-FLD _3
+FLD _6
 FXCH
 FCOM
 FSTSW AX
@@ -123,7 +125,7 @@ SAHF
 FFREE
 JNE _ET_91
 FLD @aux
-FLD _144
+FLD _9
 FXCH
 FCOM
 FSTSW AX
@@ -144,7 +146,7 @@ SAHF
 FFREE
 JNE _ET_108
 FLD @aux
-FLD _5
+FLD _6
 FXCH
 FCOM
 FSTSW AX
@@ -170,7 +172,7 @@ JMP _ET_126
 _ET_118:
 FLD @posicion
 FSTP resul
-DisplayString _elemento_encontrado_en_posici__n__
+DisplayString _elemento_encontrado_en_posicion__
 newline 1
 DisplayFloat resul, 2
 newline 1
