@@ -108,47 +108,64 @@ lista: CTE
 {
 	puts("R8: LISTA -> cte");
 	
+	/* INICIALIZACION DE @AUX */
 	
+	// @aux = pivot
 	insertar_polaca(VAR_AUX, &numeracion, &polaca);
 	insertar_polaca(ELEMENTO_VACIO, &numeracion, &polaca);
 	_nro_celda_aux = numeracion;
 	insertar_polaca(OP_ASIGNACION, &numeracion, &polaca);
 	
+	/* VERIFICACION DE PIVOT */
+	
+	// if(@aux < 1)
 	insertar_polaca(VAR_AUX, &numeracion, &polaca);
 	insertar_polaca(VALOR_CRITICO_PIVOT_LEXEMA, &numeracion, &polaca);
 	insertar_polaca(CMP, &numeracion, &polaca);
 	insertar_polaca(BGE, &numeracion, &polaca);
-	insertar_polaca(crear_etiqueta(numeracion + 5), &numeracion, &polaca);
+	insertar_polaca(crear_etiqueta(numeracion + SALTO_VERIFICACION_PIVOT), &numeracion, &polaca);
+	// WRITE "El valor debe ser >= 1"
 	insertar_polaca(MSJ_ERROR_PIVOT_LEXEMA, &numeracion, &polaca);
 	insertar_polaca(OUTPUT, &numeracion, &polaca);
+	// exit
 	insertar_polaca(BI, &numeracion, &polaca);
 	insertar_polaca(ELEMENTO_VACIO, &numeracion, &polaca);
 	//Falta apilar
 	
+	/* INICIALIZACION DE RESTOS DE VARIABLES */
+	
+	// @posicion = 0
 	insertar_polaca(VAR_POS, &numeracion, &polaca);
 	insertar_polaca(INI_VAR_POS_LEXEMA, &numeracion, &polaca);
 	insertar_polaca(OP_ASIGNACION, &numeracion, &polaca);
+	// @contador = 0
 	_contador = 0;
+	// @es_primera_poiscion = 0;
 	insertar_polaca(VAR_ES_PRI, &numeracion, &polaca);
 	insertar_polaca(INI_VAR_ES_PRI_LEXEMA, &numeracion, &polaca);
 	insertar_polaca(OP_ASIGNACION, &numeracion, &polaca);
 	
+	/* ALGORITMO PARA ENCONTRAR POSICION */
+	
+	// @contador = @contador + 1
 	_contador++;
+	// if(@es_primera_aparicion == 0 and @aux == #n)
 	insertar_polaca(VAR_ES_PRI, &numeracion, &polaca);
 	insertar_polaca(INI_VAR_ES_PRI_LEXEMA, &numeracion, &polaca);
 	insertar_polaca(CMP, &numeracion, &polaca);
 	insertar_polaca(BNE, &numeracion, &polaca);
-	insertar_polaca(crear_etiqueta(numeracion + 12), &numeracion, &polaca);
+	insertar_polaca(crear_etiqueta(numeracion + SALTO_VERIFICACION_VAR_ES_PRI), &numeracion, &polaca);
 	insertar_polaca(VAR_AUX, &numeracion, &polaca);
 	insertar_polaca($1, &numeracion, &polaca);
 	insertar_polaca(CMP, &numeracion, &polaca);
 	insertar_polaca(BNE, &numeracion, &polaca);
-	insertar_polaca(crear_etiqueta(numeracion + 7), &numeracion, &polaca);
+	insertar_polaca(crear_etiqueta(numeracion + SALTO_VERIFICACION_VAR_AUX), &numeracion, &polaca);
+	// @posicion = @contador
 	insertar_polaca(VAR_POS, &numeracion, &polaca);
-	
 	itoa(_contador, s_aux, 10);
 	insertar_polaca(agregar_guion_bajo(s_aux), &numeracion, &polaca);
 	insertar_polaca(OP_ASIGNACION, &numeracion, &polaca);
+	// @es_primera_aparicion = 1
 	insertar_polaca(VAR_ES_PRI, &numeracion, &polaca);
 	insertar_polaca(FIN_VAR_ES_PRI_LEXEMA, &numeracion, &polaca);
 	insertar_polaca(OP_ASIGNACION, &numeracion, &polaca);
@@ -158,22 +175,27 @@ lista: CTE
 {
 	puts("R9: LISTA -> LISTA coma cte");
 	
+	/* ALGORITMO PARA ENCONTRAR POSICION */
+	
+	// @contador = @contador + 1
 	_contador++;
+	// if(@es_primera_aparicion == 0 and @aux == #n)
 	insertar_polaca(VAR_ES_PRI, &numeracion, &polaca);
 	insertar_polaca(INI_VAR_ES_PRI_LEXEMA, &numeracion, &polaca);
 	insertar_polaca(CMP, &numeracion, &polaca);
 	insertar_polaca(BNE, &numeracion, &polaca);
-	insertar_polaca(crear_etiqueta(numeracion + 12), &numeracion, &polaca);
+	insertar_polaca(crear_etiqueta(numeracion + SALTO_VERIFICACION_VAR_ES_PRI), &numeracion, &polaca);
 	insertar_polaca(VAR_AUX, &numeracion, &polaca);
 	insertar_polaca($3, &numeracion, &polaca);
 	insertar_polaca(CMP, &numeracion, &polaca);
 	insertar_polaca(BNE, &numeracion, &polaca);
-	insertar_polaca(crear_etiqueta(numeracion + 7), &numeracion, &polaca);
+	insertar_polaca(crear_etiqueta(numeracion + SALTO_VERIFICACION_VAR_AUX), &numeracion, &polaca);
+	// @posicion = @contador
 	insertar_polaca(VAR_POS, &numeracion, &polaca);
-	
 	itoa(_contador, s_aux, 10);
 	insertar_polaca(agregar_guion_bajo(s_aux), &numeracion, &polaca);
 	insertar_polaca(OP_ASIGNACION, &numeracion, &polaca);
+	// @es_primera_aparicion = 1
 	insertar_polaca(VAR_ES_PRI, &numeracion, &polaca);
 	insertar_polaca(FIN_VAR_ES_PRI_LEXEMA, &numeracion, &polaca);
 	insertar_polaca(OP_ASIGNACION, &numeracion, &polaca);

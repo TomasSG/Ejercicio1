@@ -42,15 +42,21 @@
 #define CARACTER_ESTANDARIZAR '_'
 
 /* POLACA */
+
+// Operadores matematicos
 #define OP_ASIGNACION "="
 
+// Elementos de celdas
 #define ELEMENTO_VACIO " "
 
+// Input/Output
 #define INPUT "READ"
 #define OUTPUT "WRITE"
 
+// Etiqueta
 #define ETIQUETA "_ET_"
 
+// Operadores de comparacion
 #define OPERADOR_LE "<"
 #define OPERADOR_LEQ "<="
 #define OPERADOR_GE	">"
@@ -58,6 +64,7 @@
 #define OPERADOR_NE	"<>"
 #define OPERADOR_IGUAL "=="
 
+// Saltos
 #define CMP "CMP"
 
 #define BI "BI"
@@ -68,13 +75,12 @@
 #define BEQ "BEQ"
 #define BNE "BNE"
 
-#define CANTIDAD_DIGITOS_NUMERO 5
-
-
+// Variables auxiliares
 #define VAR_AUX "@aux"
 #define VAR_POS "@posicion"
 #define VAR_ES_PRI "@es_primera_aparicion"
 
+// Valores de variables auxiliares
 #define INI_VAR_POS_VALOR "0"
 #define INI_VAR_ES_PRI_VALOR "0"
 #define FIN_VAR_ES_PRI_VALOR "1"
@@ -85,6 +91,7 @@
 #define FIN_VAR_ES_PRI_LEXEMA "_1"
 #define VALOR_CRITICO_PIVOT_LEXEMA "_1"
 
+// Mensajes de erroes
 #define MSJ_ERROR_PIVOT_VALOR "\"El valor debe ser >= 1\""
 #define MSJ_ERROR_LISTA_VACIA_VALOR "\"La lista esta vacia\""
 #define MSJ_ERROR_NO_ENCONTRADO_VALOR "\"Elemento no encontrado\""
@@ -92,5 +99,13 @@
 #define MSJ_ERROR_PIVOT_LEXEMA "El_valor_debe_ser____1"
 #define MSJ_ERROR_LISTA_VACIA_LEXEMA "La_lista_esta_vacia"
 #define MSJ_ERROR_NO_ENCONTRADO_LEXEMA "Elemento_no_encontrado"
+
+// Saltos 
+#define SALTO_VERIFICACION_PIVOT 5
+#define SALTO_VERIFICACION_VAR_ES_PRI 12
+#define SALTO_VERIFICACION_VAR_AUX 7
+
+// Otros
+#define CANTIDAD_DIGITOS_NUMERO 5
 
 #endif
