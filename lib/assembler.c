@@ -35,20 +35,13 @@ void generar_declaraciones(FILE *pf, const t_lista_ts *pl)
     {
 		if(es_constante((*pl)->dato.lexema))
 		{
-			if(strcmp((*pl)->dato.tipo, LEXICO_TIPO_STRING) == 0)
+			if(strcmp((*pl)->dato.tipo, STRING) == 0)
 			{
 				fprintf(pf, "%-35s\t%-2s\t%-35s, \'$\', %d dup (?)\n",(*pl)->dato.lexema, PRECISION_STRING, (*pl)->dato.valor, (*pl)->dato.longitud);
 			}
 			else
 			{
-				if(strcmp((*pl)->dato.tipo, LEXICO_TIPO_INTEGER) == 0)
-				{
-					fprintf(pf, "%-35s\t%-2s\t%s.00\n",(*pl)->dato.lexema, PRECISION_INTEGER, (*pl)->dato.valor);
-				}
-				else
-				{
-					fprintf(pf, "%-35s\t%-2s\t%s\n",(*pl)->dato.lexema, PRECISION_FLOAT, (*pl)->dato.valor);
-				}
+				fprintf(pf, "%-35s\t%-2s\t%s.00\n",(*pl)->dato.lexema, PRECISION_INTEGER, (*pl)->dato.valor);
 			}
 		}
 		else
@@ -68,6 +61,7 @@ void generar_codigo(FILE *pf, const t_lista_polaca *pl)
 	fprintf(pf, "MOV DS, EAX\n");
 	fprintf(pf, "MOV ES, EAX\n\n");
 
+	/*
 	while(*pl)
     {
 		
@@ -107,6 +101,7 @@ void generar_codigo(FILE *pf, const t_lista_polaca *pl)
         
 		pl=&(*pl)->psig;
     }
+	*/
 }
 
 void generar_final(FILE *pf)
@@ -117,35 +112,12 @@ void generar_final(FILE *pf)
 }
 
 
-void operacion_aritmetica(FILE *pf, const char *op, const char *s1, const char *s2)
+int es_constante(const char *s)
 {
-	if(*s1 != '[')
-	{
-		fprintf(pf, "%s %s\n", CMD_PUSH, s1);
-	}
-	if(*s2 != '[')
-	{
-		fprintf(pf, "%s %s\n", CMD_PUSH, s2);
-	}
-	if(strcmp(op, SIGNO_SUMAR) == 0)
-	{
-		fprintf(pf, "%s\n", CMD_SUMAR);
-	}
-	else if(strcmp(op, SIGNO_RESTAR) == 0)
-	{
-		fprintf(pf, "%s\n", CMD_RESTAR);
-	}
-	else if(strcmp(op, SIGNO_DIVISION) == 0)
-	{
-		fprintf(pf, "%s\n", CMD_DIVIDIR);
-	}
-	else if(strcmp(op, SIGNO_MULT) == 0)
-	{
-		fprintf(pf, "%s\n", CMD_MULTIPLICAR);
-	} 
-	
+	return strncmp(s, MARCADOR_CONSTANTE, strlen(MARCADOR_CONSTANTE)) == 0;
 }
 
+/*
 void operacion_salida(FILE *pf, const char *s)
 {
 	if(es_constante(s))
@@ -181,24 +153,9 @@ void operacion_asignacion(FILE *pf, const char *s1, const char *s2)
 	fprintf(pf, "%s %s\n", CMD_POP, s1);
 }
 
-int es_constante(const char *s)
-{
-	return *s == '_';
-}
-
-int es_operador_aritmetico(const char *s)
-{
-	return strcmp(s, SIGNO_SUMAR) == 0 || strcmp(s, SIGNO_RESTAR) == 0 || strcmp(s, SIGNO_DIVISION) == 0 || strcmp(s, SIGNO_MULT) == 0; 
-}
-
 int es_etiqueta(const char *s)
 {	
 	return strncmp(s, ETIQUETA, strlen(ETIQUETA)) == 0;
-}
-
-int es_factor(const char *s1, const char *s2)
-{
-	return strcmp(s1, SIGNO_VACIO) == 0 && strcmp(s2, SIGNO_VACIO) == 0;
 }
 
 int es_asignacion(const char *s)
@@ -220,6 +177,7 @@ int es_comparacion(const char *s)
 {
 	return strcmp(s, CMP) == 0;
 }
+
 int es_salto(const char *s)
 {
 	return strcmp(s, BI) == 0 || strcmp(s, BLT) == 0 || strcmp(s, BLE) == 0 || strcmp(s, BGT) == 0 || strcmp(s, BGE) == 0 || strcmp(s, BEQ) == 0 || strcmp(s, BNE) == 0; 
@@ -258,25 +216,4 @@ char* obtener_cmd_salto(const char *s)
 	}
 	return NULL;
 }
-
-char* transformar_a_etiqueta(const char *s)
-{
-	char *resultado, *paux;
-	int len_etiqueta = strlen(ETIQUETA);
-	resultado = (char*) malloc(sizeof(char) * (len_etiqueta + strlen(s) - CANTIDAD_CORCHETES) + 1);
-	if(resultado == NULL)
-	{
-		return NULL;
-	}
-	strcpy(resultado, ETIQUETA);
-	paux = resultado + len_etiqueta;
-	s++;
-	while(*s != ']' && *s != '\0')
-	{
-		*paux = *s;
-		paux++;
-		s++;
-	}
-	*paux = '\0';
-	return resultado;
-}
+*/

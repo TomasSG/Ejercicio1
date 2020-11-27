@@ -100,9 +100,9 @@
 #define MSJ_ERROR_LISTA_VACIA_VALOR "\"La lista esta vacia\""
 #define MSJ_ERROR_NO_ENCONTRADO_VALOR "\"Elemento no encontrado\""
 
-#define MSJ_ERROR_PIVOT_LEXEMA "El_valor_debe_ser____1"
-#define MSJ_ERROR_LISTA_VACIA_LEXEMA "La_lista_esta_vacia"
-#define MSJ_ERROR_NO_ENCONTRADO_LEXEMA "Elemento_no_encontrado"
+#define MSJ_ERROR_PIVOT_LEXEMA "_El_valor_debe_ser____1"
+#define MSJ_ERROR_LISTA_VACIA_LEXEMA "_La_lista_esta_vacia"
+#define MSJ_ERROR_NO_ENCONTRADO_LEXEMA "_Elemento_no_encontrado"
 
 // Saltos 
 #define SALTO_VERIFICACION_PIVOT 5
@@ -113,4 +113,25 @@
 // Otros
 #define CANTIDAD_DIGITOS_NUMERO 5
 #define FIN_ETIQUETA ":"
+
+/* ASSEMBLER */
+
+// Cantidad de bits para representación
+#define PRECISION_STRING "db"
+#define PRECISION_INTEGER "dd"
+#define PRECISION_FLOAT "dd"
+#define PRECISION_VARIABLE "dd"
+
+// Operaciones con pila
+#define CMD_PUSH "FLD"
+#define CMD_POP "FSTP"
+#define CMD_LIBERAR "FFREE"
+#define CMD_XCH "FXCH"
+
+// Operaciones input/output
+#define CMD_OUT_FLOAT "DisplayFloat"
+#define CMD_OUT_STRING "DisplayString"
+#define CMD_NUEVA_LINEA "newline 1"
+#define CMD_IN_FLOAT "GetFloat"
+
 #endif

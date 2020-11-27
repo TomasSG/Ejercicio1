@@ -7,7 +7,7 @@
 [7] BGE
 [8] _ET_13
 [9] WRITE
-[10] El_valor_debe_ser____1
+[10] _El_valor_debe_ser____1
 [11] BI
 [12] _ET_84
 [13] _ET_13:
@@ -74,7 +74,7 @@
 [74] BNE
 [75] _ET_80
 [76] WRITE
-[77] Elemento_no_encontrado
+[77] _Elemento_no_encontrado
 [78] BI
 [79] _ET_84
 [80] _ET_80:
