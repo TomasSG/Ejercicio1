@@ -84,6 +84,7 @@ posicion: POSICION PARA ID PYC CA lista CC PARC
 lista: CTE
 {
 	puts("R8: LISTA -> cte");
+	char aux[CANTIDAD_ITOA];
 	
 	insertar_polaca(VAR_AUX, &numeracion, &polaca);
 	insertar_polaca(ELEMENTO_VACIO, &numeracion, &polaca);
@@ -121,8 +122,8 @@ lista: CTE
 	insertar_polaca(BNE, &numeracion, &polaca);
 	insertar_polaca(crear_etiqueta(numeracion + 7), &numeracion, &polaca);
 	insertar_polaca(VAR_POS, &numeracion, &polaca);
-	char *aux[CANTIDAD_ITOA]
-	itoa(aux, _contador, 10);
+	
+	itoa(_contador, aux, 10);
 	insertar_polaca(aux, &numeracion, &polaca);
 	insertar_polaca(OP_ASIGNACION, &numeracion, &polaca);
 	insertar_polaca(VAR_ES_PRI, &numeracion, &polaca);
@@ -132,7 +133,8 @@ lista: CTE
 
 | lista COMA CTE
 {
-	puts("R9: LISTA -> LISTA coma cte");	
+	puts("R9: LISTA -> LISTA coma cte");
+	char aux[CANTIDAD_ITOA];	
 	
 	_contador++;
 	insertar_polaca(VAR_ES_PRI, &numeracion, &polaca);
@@ -141,13 +143,13 @@ lista: CTE
 	insertar_polaca(BNE, &numeracion, &polaca);
 	insertar_polaca(crear_etiqueta(numeracion + 12), &numeracion, &polaca);
 	insertar_polaca(VAR_AUX, &numeracion, &polaca);
-	insertar_polaca($1, &numeracion, &polaca);
+	insertar_polaca($3, &numeracion, &polaca);
 	insertar_polaca(CMP, &numeracion, &polaca);
 	insertar_polaca(BNE, &numeracion, &polaca);
 	insertar_polaca(crear_etiqueta(numeracion + 7), &numeracion, &polaca);
 	insertar_polaca(VAR_POS, &numeracion, &polaca);
-	char *aux[CANTIDAD_ITOA]
-	itoa(aux, _contador, 10);
+	
+	itoa(_contador, aux, 10);
 	insertar_polaca(aux, &numeracion, &polaca);
 	insertar_polaca(OP_ASIGNACION, &numeracion, &polaca);
 	insertar_polaca(VAR_ES_PRI, &numeracion, &polaca);

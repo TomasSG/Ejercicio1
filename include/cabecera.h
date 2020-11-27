@@ -3,6 +3,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 #include "./constantes.h"
 #include "./lexico.h"
 #include "./lista_ts.h"
