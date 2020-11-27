@@ -13,6 +13,7 @@ char* obtener_branch(const char*);
 void invertir_branch(t_lista_polaca*, int);
 char* crear_etiqueta(int);
 char* agregar_fin_etiqueta(const char*);
+void agregar_valos_contador_ts(int, t_lista_ts*);
 int insertar_polaca(const char*, int*, t_lista_polaca*);
 
 // Operaciones

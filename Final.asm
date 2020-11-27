@@ -13,6 +13,7 @@ _0                                 	dd	0.00
 _1                                 	dd	1.00
 _120                               	dd	120.00
 _2                                 	dd	2.00
+_3                                 	dd	3.00
 _45                                	dd	45.00
 _El_valor_debe_ser____1            	db	"El valor debe ser >= 1"           , '$', 22 dup (?)
 _Elemento_no_encontrado            	db	"Elemento no encontrado"           , '$', 22 dup (?)

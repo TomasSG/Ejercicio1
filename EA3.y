@@ -51,6 +51,8 @@ s: prog
 		cambiar_elemento(&polaca, nro_celda, crear_etiqueta(numeracion - 1));
 	}
 	
+	
+	agregar_valos_contador_ts(_contador, &ts);
 	generar_assembler(PATH_ARCHIVO_ASSEMBLER, &polaca, &ts);
 }
 ;
@@ -227,14 +229,6 @@ int main(int argc, char **argv)
 	numeracion = 0;
 	
 	yyparse();
-	
-	
-	// Esto es para asegurarme que todos los valores que toma _contador esten en la ts
-	for(i = 1; i <= _contador; i++)
-	{
-		itoa(_contador, s_aux, 10);
-		insertar_ts(agregar_guion_bajo(s_aux), INTEGER, s_aux, SIN_LONGITUD, &ts);
-	}
 	
 	// Cierre de estructuras y variables
 	guardar_lista_en_archivo_polaca(&polaca, PATH_ARCHIVO_INTERMEDIO);

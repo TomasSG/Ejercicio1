@@ -62,6 +62,17 @@ char* agregar_fin_etiqueta(const char *s)
 	return res;
 }
 
+void agregar_valos_contador_ts(int contador, t_lista_ts *pts)
+{
+	char s_aux[CANTIDAD_ITOA];
+	int i;
+	for(i = 1; i <= contador; i++)
+	{
+		itoa(contador, s_aux, 10);
+		insertar_ts(agregar_guion_bajo(s_aux), INTEGER, s_aux, SIN_LONGITUD, pts);
+	}
+}
+
 
 int insertar_polaca(const char *p1, int *pnumero, t_lista_polaca *pl)
 {
