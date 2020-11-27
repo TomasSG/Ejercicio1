@@ -3,8 +3,16 @@
 |-----------------------------------------------------------------------------------|
 |LEXEMA                          |TIPO    |VALOR                           |LONGITUD|
 |--------------------------------|--------|--------------------------------|--------|
+|@aux                            |        |                                |        |
+|@es_primera_aparicion           |        |                                |        |
+|@posicion                       |        |                                |        |
+|El_valor_debe_ser____1          |String  |"El valor debe ser >= 1"        |22      |
+|Elemento_no_encontrado          |String  |"Elemento no encontrado"        |22      |
+|La_lista_esta_vacia             |String  |"La lista esta vacia"           |19      |
+|_0                              |int     |0                               |        |
 |_1                              |int     |1                               |        |
 |_2                              |int     |2                               |        |
+|_33                             |int     |33                              |        |
 |a                               |        |                                |        |
 |b                               |        |                                |        |
 |-----------------------------------------------------------------------------------|

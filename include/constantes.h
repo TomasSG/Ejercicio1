@@ -69,18 +69,28 @@
 #define BNE "BNE"
 
 #define CANTIDAD_DIGITOS_NUMERO 5
-#define VALOR_CRITICO_PIVOT "1"
+
 
 #define VAR_AUX "@aux"
 #define VAR_POS "@posicion"
 #define VAR_ES_PRI "@es_primera_aparicion"
 
-#define INI_VAR_POS "0"
-#define INI_VAR_ES_PRI "0"
-#define FIN_VAR_ES_PRI "1"
+#define INI_VAR_POS_VALOR "0"
+#define INI_VAR_ES_PRI_VALOR "0"
+#define FIN_VAR_ES_PRI_VALOR "1"
+#define VALOR_CRITICO_PIVOT_VALOR "1"
 
-#define MSJ_ERROR_PIVOT "El valor debe ser >= 1"
-#define MSJ_ERROR_LISTA_VACIA "La lista esta vacia"
-#define MSJ_ERROR_NO_ENCONTRADO "Elemento no encontrado"
+#define INI_VAR_POS_LEXEMA "_0"
+#define INI_VAR_ES_PRI_LEXEMA "_0"
+#define FIN_VAR_ES_PRI_LEXEMA "_1"
+#define VALOR_CRITICO_PIVOT_LEXEMA "_1"
+
+#define MSJ_ERROR_PIVOT_VALOR "\"El valor debe ser >= 1\""
+#define MSJ_ERROR_LISTA_VACIA_VALOR "\"La lista esta vacia\""
+#define MSJ_ERROR_NO_ENCONTRADO_VALOR "\"Elemento no encontrado\""
+
+#define MSJ_ERROR_PIVOT_LEXEMA "El_valor_debe_ser____1"
+#define MSJ_ERROR_LISTA_VACIA_LEXEMA "La_lista_esta_vacia"
+#define MSJ_ERROR_NO_ENCONTRADO_LEXEMA "Elemento_no_encontrado"
 
 #endif

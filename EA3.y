@@ -79,11 +79,11 @@ posicion: POSICION PARA ID PYC CA lista CC PARC
 	puts("R6: POSICION -> posicion para id pyc ca LISTA cc parc");
 	
 	insertar_polaca(VAR_POS, &numeracion, &polaca);
-	insertar_polaca(INI_VAR_POS, &numeracion, &polaca);
+	insertar_polaca(INI_VAR_POS_LEXEMA, &numeracion, &polaca);
 	insertar_polaca(CMP, &numeracion, &polaca);
 	insertar_polaca(BNE, &numeracion, &polaca);
-	insertar_polaca(crear_etiqueta(numeracion + 4), &numeracion, &polaca);
-	insertar_polaca(MSJ_ERROR_NO_ENCONTRADO, &numeracion, &polaca);
+	insertar_polaca(crear_etiqueta(numeracion + 5), &numeracion, &polaca);
+	insertar_polaca(MSJ_ERROR_NO_ENCONTRADO_LEXEMA, &numeracion, &polaca);
 	insertar_polaca(OUTPUT, &numeracion, &polaca);
 	insertar_polaca(BI, &numeracion, &polaca);
 	insertar_polaca(ELEMENTO_VACIO, &numeracion, &polaca);
@@ -96,7 +96,7 @@ posicion: POSICION PARA ID PYC CA lista CC PARC
 {
 	puts("R7: POSICION -> posicion para id pyc ca cc parc");
 	
-	insertar_polaca(MSJ_ERROR_LISTA_VACIA, &numeracion, &polaca);
+	insertar_polaca(MSJ_ERROR_LISTA_VACIA_LEXEMA, &numeracion, &polaca);
 	insertar_polaca(OUTPUT, &numeracion, &polaca);
 	insertar_polaca(BI, &numeracion, &polaca);
 	insertar_polaca(ELEMENTO_VACIO, &numeracion, &polaca);
@@ -115,27 +115,27 @@ lista: CTE
 	insertar_polaca(OP_ASIGNACION, &numeracion, &polaca);
 	
 	insertar_polaca(VAR_AUX, &numeracion, &polaca);
-	insertar_polaca(VALOR_CRITICO_PIVOT, &numeracion, &polaca);
+	insertar_polaca(VALOR_CRITICO_PIVOT_LEXEMA, &numeracion, &polaca);
 	insertar_polaca(CMP, &numeracion, &polaca);
 	insertar_polaca(BGE, &numeracion, &polaca);
 	insertar_polaca(crear_etiqueta(numeracion + 5), &numeracion, &polaca);
-	insertar_polaca(MSJ_ERROR_PIVOT, &numeracion, &polaca);
+	insertar_polaca(MSJ_ERROR_PIVOT_LEXEMA, &numeracion, &polaca);
 	insertar_polaca(OUTPUT, &numeracion, &polaca);
 	insertar_polaca(BI, &numeracion, &polaca);
 	insertar_polaca(ELEMENTO_VACIO, &numeracion, &polaca);
 	//Falta apilar
 	
 	insertar_polaca(VAR_POS, &numeracion, &polaca);
-	insertar_polaca(INI_VAR_POS, &numeracion, &polaca);
+	insertar_polaca(INI_VAR_POS_LEXEMA, &numeracion, &polaca);
 	insertar_polaca(OP_ASIGNACION, &numeracion, &polaca);
 	_contador = 0;
 	insertar_polaca(VAR_ES_PRI, &numeracion, &polaca);
-	insertar_polaca(INI_VAR_ES_PRI, &numeracion, &polaca);
+	insertar_polaca(INI_VAR_ES_PRI_LEXEMA, &numeracion, &polaca);
 	insertar_polaca(OP_ASIGNACION, &numeracion, &polaca);
 	
 	_contador++;
 	insertar_polaca(VAR_ES_PRI, &numeracion, &polaca);
-	insertar_polaca(INI_VAR_ES_PRI, &numeracion, &polaca);
+	insertar_polaca(INI_VAR_ES_PRI_LEXEMA, &numeracion, &polaca);
 	insertar_polaca(CMP, &numeracion, &polaca);
 	insertar_polaca(BNE, &numeracion, &polaca);
 	insertar_polaca(crear_etiqueta(numeracion + 12), &numeracion, &polaca);
@@ -147,10 +147,10 @@ lista: CTE
 	insertar_polaca(VAR_POS, &numeracion, &polaca);
 	
 	itoa(_contador, s_aux, 10);
-	insertar_polaca(s_aux, &numeracion, &polaca);
+	insertar_polaca(agregar_guion_bajo(s_aux), &numeracion, &polaca);
 	insertar_polaca(OP_ASIGNACION, &numeracion, &polaca);
 	insertar_polaca(VAR_ES_PRI, &numeracion, &polaca);
-	insertar_polaca(FIN_VAR_ES_PRI, &numeracion, &polaca);
+	insertar_polaca(FIN_VAR_ES_PRI_LEXEMA, &numeracion, &polaca);
 	insertar_polaca(OP_ASIGNACION, &numeracion, &polaca);
 }
 
@@ -160,7 +160,7 @@ lista: CTE
 	
 	_contador++;
 	insertar_polaca(VAR_ES_PRI, &numeracion, &polaca);
-	insertar_polaca(INI_VAR_ES_PRI, &numeracion, &polaca);
+	insertar_polaca(INI_VAR_ES_PRI_LEXEMA, &numeracion, &polaca);
 	insertar_polaca(CMP, &numeracion, &polaca);
 	insertar_polaca(BNE, &numeracion, &polaca);
 	insertar_polaca(crear_etiqueta(numeracion + 12), &numeracion, &polaca);
@@ -172,10 +172,10 @@ lista: CTE
 	insertar_polaca(VAR_POS, &numeracion, &polaca);
 	
 	itoa(_contador, s_aux, 10);
-	insertar_polaca(s_aux, &numeracion, &polaca);
+	insertar_polaca(agregar_guion_bajo(s_aux), &numeracion, &polaca);
 	insertar_polaca(OP_ASIGNACION, &numeracion, &polaca);
 	insertar_polaca(VAR_ES_PRI, &numeracion, &polaca);
-	insertar_polaca(FIN_VAR_ES_PRI, &numeracion, &polaca);
+	insertar_polaca(FIN_VAR_ES_PRI_LEXEMA, &numeracion, &polaca);
 	insertar_polaca(OP_ASIGNACION, &numeracion, &polaca);
 }
 ;
@@ -211,12 +211,31 @@ int main(int argc, char **argv)
 	// Inicialización de estructuras y variables
 	crear_lista_ts(&ts);
 	
+	insertar_ts(MSJ_ERROR_PIVOT_LEXEMA, STRING, MSJ_ERROR_PIVOT_VALOR, strlen(MSJ_ERROR_PIVOT_VALOR) - CANTIDAD_COMILLAS, &ts);
+	insertar_ts(MSJ_ERROR_LISTA_VACIA_LEXEMA, STRING, MSJ_ERROR_LISTA_VACIA_VALOR, strlen(MSJ_ERROR_LISTA_VACIA_VALOR) - CANTIDAD_COMILLAS, &ts);
+	insertar_ts(MSJ_ERROR_NO_ENCONTRADO_LEXEMA, STRING, MSJ_ERROR_NO_ENCONTRADO_VALOR, strlen(MSJ_ERROR_NO_ENCONTRADO_VALOR) - CANTIDAD_COMILLAS, &ts);
+	
+	insertar_ts(VAR_AUX, NULL, NULL, SIN_LONGITUD, &ts);
+	insertar_ts(VAR_POS, NULL, NULL, SIN_LONGITUD, &ts);
+	insertar_ts(VAR_ES_PRI, NULL, NULL, SIN_LONGITUD, &ts);
+	
+	insertar_ts(INI_VAR_POS_LEXEMA, INTEGER, INI_VAR_POS_VALOR, SIN_LONGITUD, &ts);
+	insertar_ts(INI_VAR_ES_PRI_LEXEMA, INTEGER, INI_VAR_ES_PRI_VALOR, SIN_LONGITUD, &ts);
+	insertar_ts(FIN_VAR_ES_PRI_LEXEMA, INTEGER, FIN_VAR_ES_PRI_VALOR, SIN_LONGITUD, &ts);
+	insertar_ts(VALOR_CRITICO_PIVOT_LEXEMA, INTEGER, VALOR_CRITICO_PIVOT_VALOR, SIN_LONGITUD, &ts);
+	
 	crear_lista_polaca(&polaca);
 	numeracion = 0;
 	
 	yyparse();
 	
 	
+	// Esto es para asegurarme que todos los valores que toma _contador esten en la ts
+	for(i = 1; i <= _contador; i++)
+	{
+		itoa(_contador, s_aux, 10);
+		insertar_ts(agregar_guion_bajo(s_aux), INTEGER, s_aux, SIN_LONGITUD, &ts);
+	}
 	
 	// Cierre de estructuras y variables
 	guardar_lista_en_archivo_polaca(&polaca, PATH_ARCHIVO_INTERMEDIO);
