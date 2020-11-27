@@ -10,6 +10,7 @@
 #include "./lista_polaca.h"
 #include "./pila.h"
 #include "./gci.h"
+#include "./assembler.h"
 #include "../y.tab.h"
 
 extern int yylineno;

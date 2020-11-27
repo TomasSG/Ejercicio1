@@ -50,6 +50,8 @@ s: prog
 		// encontrariamos las etiquetas desfasados por uno.
 		cambiar_elemento(&polaca, nro_celda, crear_etiqueta(numeracion - 1));
 	}
+	
+	generar_assembler(PATH_ARCHIVO_ASSEMBLER, &polaca, &ts);
 }
 ;
 

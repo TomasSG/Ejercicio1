@@ -8,7 +8,7 @@ echo Creando el archivo de byson.
 bison -dyv ./EA3.y
 pause
 echo Creando el ejecutable ...
-gcc  ./lib/pila.c ./lib/gci.c ./lib/lista_polaca.c ./lib/lista_ts.c ./lib/lexico.c ./lex.yy.c ./y.tab.c -o ./EA3.exe
+gcc  ./lib/assembler.c ./lib/pila.c ./lib/gci.c ./lib/lista_polaca.c ./lib/lista_ts.c ./lib/lexico.c ./lex.yy.c ./y.tab.c -o ./EA3.exe
 pause
 cls
 echo Ejecutando el Compilador
