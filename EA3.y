@@ -101,8 +101,7 @@ posicion: POSICION PARA ID PYC CA lista CC PARC
 	// WRITE "Elemento no encontrado"
 	operacion_output(MSJ_ERROR_NO_ENCONTRADO_LEXEMA, &numeracion, &polaca);
 	// exit
-	insertar_polaca(BI, &numeracion, &polaca);
-	insertar_polaca(ELEMENTO_VACIO, &numeracion, &polaca);
+	operacion_exit(&numeracion, &polaca);
 	apilar(&pila_celdas, &numeracion);
 	// Creamos etiqueta para el salto
 	insertar_polaca(agregar_fin_etiqueta(crear_etiqueta(numeracion)), &numeracion, &polaca);
@@ -121,8 +120,7 @@ posicion: POSICION PARA ID PYC CA lista CC PARC
 	// WRITE "La lista esta vacia"
 	operacion_output(MSJ_ERROR_LISTA_VACIA_LEXEMA, &numeracion, &polaca);
 	// exit
-	insertar_polaca(BI, &numeracion, &polaca);
-	insertar_polaca(ELEMENTO_VACIO, &numeracion, &polaca);
+	operacion_exit(&numeracion, &polaca);
 	apilar(&pila_celdas, &numeracion);
 }
 ;
@@ -150,8 +148,7 @@ lista: CTE
 	// WRITE "El valor debe ser >= 1"
 	operacion_output(MSJ_ERROR_PIVOT_LEXEMA, &numeracion, &polaca);
 	// exit
-	insertar_polaca(BI, &numeracion, &polaca);
-	insertar_polaca(ELEMENTO_VACIO, &numeracion, &polaca);
+	operacion_exit(&numeracion, &polaca);
 	apilar(&pila_celdas, &numeracion);
 	// Creamos etiqueta para el salto
 	insertar_polaca(agregar_fin_etiqueta(crear_etiqueta(numeracion)), &numeracion, &polaca);

@@ -18,6 +18,7 @@ int insertar_polaca(const char*, int*, t_lista_polaca*);
 // Operaciones
 void operacion_output(const char*, int*, t_lista_polaca*);
 void operacion_asignacion(const char*, const char*, int*, t_lista_polaca*);
+void operacion_exit(int*, t_lista_polaca*);
 void algoritmo_busqueda_aparicion(const char*, int*, int*, t_lista_polaca*);
 
 #endif

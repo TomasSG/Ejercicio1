@@ -116,6 +116,12 @@ void operacion_asignacion(const char *s1, const char *s2, int *pnumeracion, t_li
 	insertar_polaca(s1, pnumeracion, ppolaca);
 }
 
+void operacion_exit(int *pnumeracion, t_lista_polaca *ppolaca)
+{
+	insertar_polaca(BI, pnumeracion, ppolaca);
+	insertar_polaca(ELEMENTO_VACIO, pnumeracion, ppolaca);
+}
+
 void algoritmo_busqueda_aparicion(const char *cte, int *pcontador, int *pnumeracion, t_lista_polaca *ppolaca)
 {
 	char s_aux[CANTIDAD_ITOA];
