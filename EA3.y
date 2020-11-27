@@ -78,13 +78,18 @@ posicion: POSICION PARA ID PYC CA lista CC PARC
 {
 	puts("R6: POSICION -> posicion para id pyc ca LISTA cc parc");
 	
+	/* VERIFICACION DE QUE NO SE ENCONTRO EL ELEMENTO */
+	
+	// if(@posicion == 0)
 	insertar_polaca(VAR_POS, &numeracion, &polaca);
 	insertar_polaca(INI_VAR_POS_LEXEMA, &numeracion, &polaca);
 	insertar_polaca(CMP, &numeracion, &polaca);
 	insertar_polaca(BNE, &numeracion, &polaca);
 	insertar_polaca(crear_etiqueta(numeracion + 5), &numeracion, &polaca);
+	// WRITE "Elemento no enconctrado"
 	insertar_polaca(MSJ_ERROR_NO_ENCONTRADO_LEXEMA, &numeracion, &polaca);
 	insertar_polaca(OUTPUT, &numeracion, &polaca);
+	// exit
 	insertar_polaca(BI, &numeracion, &polaca);
 	insertar_polaca(ELEMENTO_VACIO, &numeracion, &polaca);
 	//Falta apilar
@@ -96,8 +101,12 @@ posicion: POSICION PARA ID PYC CA lista CC PARC
 {
 	puts("R7: POSICION -> posicion para id pyc ca cc parc");
 	
+	/* ERROR DE LISTA ES VACIA */
+	
+	// WRITE "La lista esta vaica"
 	insertar_polaca(MSJ_ERROR_LISTA_VACIA_LEXEMA, &numeracion, &polaca);
 	insertar_polaca(OUTPUT, &numeracion, &polaca);
+	// exit
 	insertar_polaca(BI, &numeracion, &polaca);
 	insertar_polaca(ELEMENTO_VACIO, &numeracion, &polaca);
 	//Falta apilar
