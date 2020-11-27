@@ -112,5 +112,5 @@
 
 // Otros
 #define CANTIDAD_DIGITOS_NUMERO 5
-
+#define FIN_ETIQUETA ":"
 #endif

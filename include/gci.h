@@ -11,6 +11,7 @@
 char* obtener_branch(const char*);
 void invertir_branch(t_lista_polaca*, int);
 char* crear_etiqueta(int);
+char* agregar_fin_etiqueta(const char*);
 int insertar_polaca(const char*, int*, t_lista_polaca*);
 
 #endif

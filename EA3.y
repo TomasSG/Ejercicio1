@@ -42,13 +42,13 @@ s: prog
 	/* INSERTAMOS EN TODOS LOS EXIT LOS SALTOS A ESTA ETIQUETA */
 	
 	// Creamos etiqueta para el salto
-	insertar_polaca(crear_etiqueta(numeracion), &numeracion, &polaca);
+	insertar_polaca(agregar_fin_etiqueta(crear_etiqueta(numeracion)), &numeracion, &polaca);
 	// Por cada elemento en la pila, escribimos en nro de celda actual en dicha celda
 	while(desapilar(&pila_celdas, &nro_celda) != PILA_VACIA)
 	{
 		// Restamos uno a la numeracion porque internamente crear_etiqueta() suma uno a la numeriación. Entonces, si no restaramos
 		// encontrariamos las etiquetas desfasados por uno.
-		cambiar_elemento(&polaca, nro_celda, $3, crear_etiqueta(numeracion - 1));
+		cambiar_elemento(&polaca, nro_celda, crear_etiqueta(numeracion - 1));
 	}
 }
 ;
@@ -108,7 +108,7 @@ posicion: POSICION PARA ID PYC CA lista CC PARC
 	insertar_polaca(ELEMENTO_VACIO, &numeracion, &polaca);
 	apilar(&pila_celdas, &numeracion);
 	// Creamos etiqueta para el salto
-	insertar_polaca(crear_etiqueta(numeracion), &numeracion, &polaca);
+	insertar_polaca(agregar_fin_etiqueta(crear_etiqueta(numeracion)), &numeracion, &polaca);
 	
 	
 	// Escribir en nro_celda_aux el nro de celda actual
@@ -159,7 +159,7 @@ lista: CTE
 	insertar_polaca(ELEMENTO_VACIO, &numeracion, &polaca);
 	apilar(&pila_celdas, &numeracion);
 	// Creamos etiqueta para el salto
-	insertar_polaca(crear_etiqueta(numeracion), &numeracion, &polaca);
+	insertar_polaca(agregar_fin_etiqueta(crear_etiqueta(numeracion)), &numeracion, &polaca);
 	
 	/* INICIALIZACION DE RESTOS DE VARIABLES */
 	
@@ -199,7 +199,7 @@ lista: CTE
 	insertar_polaca(FIN_VAR_ES_PRI_LEXEMA, &numeracion, &polaca);
 	insertar_polaca(OP_ASIGNACION, &numeracion, &polaca);
 	// Creamos etiqueta para el salto
-	insertar_polaca(crear_etiqueta(numeracion), &numeracion, &polaca);
+	insertar_polaca(agregar_fin_etiqueta(crear_etiqueta(numeracion)), &numeracion, &polaca);
 }
 
 | lista COMA CTE
@@ -231,7 +231,7 @@ lista: CTE
 	insertar_polaca(FIN_VAR_ES_PRI_LEXEMA, &numeracion, &polaca);
 	insertar_polaca(OP_ASIGNACION, &numeracion, &polaca);
 	// Creamos etiqueta para el salto
-	insertar_polaca(crear_etiqueta(numeracion), &numeracion, &polaca);
+	insertar_polaca(agregar_fin_etiqueta(crear_etiqueta(numeracion)), &numeracion, &polaca);
 }
 ;
 

@@ -1,1 +1,1 @@
-a = POSICION(b;[33, 2, 5, 9])
+a = POSICION(b;[45])

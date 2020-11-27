@@ -40,12 +40,25 @@ char* obtener_branch(const char *op)
 char* crear_etiqueta(int nro_celda_prev)
 {
 	char *res;
-	res = (char*) malloc(strlen(ETIQUETA) * sizeof(char) + CANTIDAD_DIGITOS_NUMERO);
+	res = (char*) malloc(strlen(ETIQUETA) * sizeof(char) + CANTIDAD_DIGITOS_NUMERO + 1);
 	if(res == NULL)
 	{
 		return NULL;
 	}
 	sprintf(res,"%s%d", ETIQUETA, nro_celda_prev + 1);
+	return res;
+}
+
+char* agregar_fin_etiqueta(const char *s)
+{
+	char *res;
+	res = (char*) malloc(strlen(s) * sizeof(char) + strlen(FIN_ETIQUETA) + 1);
+	if(res == NULL)
+	{
+		return NULL;
+	}
+	strcpy(res, s);
+	strcat(res, FIN_ETIQUETA);
 	return res;
 }
 
