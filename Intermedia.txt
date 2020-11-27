@@ -1,5 +1,5 @@
 [1] @aux
-[2]  
+[2] b
 [3] =
 [4] @aux
 [5] 1
@@ -48,3 +48,15 @@
 [48] @es_primera_aparicion
 [49] 1
 [50] =
+[51] @posicion
+[52] 0
+[53] CMP
+[54] BNE
+[55] _ET_59
+[56] Elemento no encontrado
+[57] WRITE
+[58] BI
+[59]  
+[60] @posicion
+[61] a
+[62] =

@@ -19,4 +19,5 @@ t_lista_polaca polaca;
 int numeracion;
 int _contador;
 int _nro_celda_aux;
+char s_aux[CANTIDAD_ITOA];
 #endif

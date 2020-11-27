@@ -67,24 +67,47 @@ read: READ ID
 asig: ID ASIGNA posicion
 {
 	puts("R5: ASIG -> id asigna POSICION");
+	
+	insertar_polaca(VAR_POS, &numeracion, &polaca);
+	insertar_polaca($1, &numeracion, &polaca);
+	insertar_polaca(OP_ASIGNACION, &numeracion, &polaca);
 }
 ;
 
 posicion: POSICION PARA ID PYC CA lista CC PARC
 {
 	puts("R6: POSICION -> posicion para id pyc ca LISTA cc parc");
+	
+	insertar_polaca(VAR_POS, &numeracion, &polaca);
+	insertar_polaca(INI_VAR_POS, &numeracion, &polaca);
+	insertar_polaca(CMP, &numeracion, &polaca);
+	insertar_polaca(BNE, &numeracion, &polaca);
+	insertar_polaca(crear_etiqueta(numeracion + 4), &numeracion, &polaca);
+	insertar_polaca(MSJ_ERROR_NO_ENCONTRADO, &numeracion, &polaca);
+	insertar_polaca(OUTPUT, &numeracion, &polaca);
+	insertar_polaca(BI, &numeracion, &polaca);
+	insertar_polaca(ELEMENTO_VACIO, &numeracion, &polaca);
+	//Falta apilar
+	
+	cambiar_elemento(&polaca, _nro_celda_aux, $3);
 }
 
 | POSICION PARA ID PYC CA CC PARC
 {
 	puts("R7: POSICION -> posicion para id pyc ca cc parc");
+	
+	insertar_polaca(MSJ_ERROR_LISTA_VACIA, &numeracion, &polaca);
+	insertar_polaca(OUTPUT, &numeracion, &polaca);
+	insertar_polaca(BI, &numeracion, &polaca);
+	insertar_polaca(ELEMENTO_VACIO, &numeracion, &polaca);
+	//Falta apilar
 }
 ;
 
 lista: CTE
 {
 	puts("R8: LISTA -> cte");
-	char aux[CANTIDAD_ITOA];
+	
 	
 	insertar_polaca(VAR_AUX, &numeracion, &polaca);
 	insertar_polaca(ELEMENTO_VACIO, &numeracion, &polaca);
@@ -123,8 +146,8 @@ lista: CTE
 	insertar_polaca(crear_etiqueta(numeracion + 7), &numeracion, &polaca);
 	insertar_polaca(VAR_POS, &numeracion, &polaca);
 	
-	itoa(_contador, aux, 10);
-	insertar_polaca(aux, &numeracion, &polaca);
+	itoa(_contador, s_aux, 10);
+	insertar_polaca(s_aux, &numeracion, &polaca);
 	insertar_polaca(OP_ASIGNACION, &numeracion, &polaca);
 	insertar_polaca(VAR_ES_PRI, &numeracion, &polaca);
 	insertar_polaca(FIN_VAR_ES_PRI, &numeracion, &polaca);
@@ -134,7 +157,6 @@ lista: CTE
 | lista COMA CTE
 {
 	puts("R9: LISTA -> LISTA coma cte");
-	char aux[CANTIDAD_ITOA];	
 	
 	_contador++;
 	insertar_polaca(VAR_ES_PRI, &numeracion, &polaca);
@@ -149,8 +171,8 @@ lista: CTE
 	insertar_polaca(crear_etiqueta(numeracion + 7), &numeracion, &polaca);
 	insertar_polaca(VAR_POS, &numeracion, &polaca);
 	
-	itoa(_contador, aux, 10);
-	insertar_polaca(aux, &numeracion, &polaca);
+	itoa(_contador, s_aux, 10);
+	insertar_polaca(s_aux, &numeracion, &polaca);
 	insertar_polaca(OP_ASIGNACION, &numeracion, &polaca);
 	insertar_polaca(VAR_ES_PRI, &numeracion, &polaca);
 	insertar_polaca(FIN_VAR_ES_PRI, &numeracion, &polaca);
