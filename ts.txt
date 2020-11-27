@@ -11,6 +11,9 @@
 |La_lista_esta_vacia             |String  |"La lista esta vacia"           |19      |
 |_0                              |int     |0                               |        |
 |_1                              |int     |1                               |        |
+|_120                            |int     |120                             |        |
+|_2                              |int     |2                               |        |
+|_3                              |int     |3                               |        |
 |_45                             |int     |45                              |        |
 |a                               |        |                                |        |
 |b                               |        |                                |        |

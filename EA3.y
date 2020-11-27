@@ -167,26 +167,7 @@ lista: CTE
 	
 	/* ALGORITMO PARA ENCONTRAR POSICION */
 	
-	// @contador = @contador + 1
-	_contador++;
-	// if(@es_primera_aparicion == 0 and @aux == #n)
-	insertar_polaca(VAR_ES_PRI, &numeracion, &polaca);
-	insertar_polaca(INI_VAR_ES_PRI_LEXEMA, &numeracion, &polaca);
-	insertar_polaca(CMP, &numeracion, &polaca);
-	insertar_polaca(BNE, &numeracion, &polaca);
-	insertar_polaca(crear_etiqueta(numeracion + SALTO_VERIFICACION_VAR_ES_PRI), &numeracion, &polaca);
-	insertar_polaca(VAR_AUX, &numeracion, &polaca);
-	insertar_polaca($1, &numeracion, &polaca);
-	insertar_polaca(CMP, &numeracion, &polaca);
-	insertar_polaca(BNE, &numeracion, &polaca);
-	insertar_polaca(crear_etiqueta(numeracion + SALTO_VERIFICACION_VAR_AUX), &numeracion, &polaca);
-	// @posicion = @contador
-	itoa(_contador, s_aux, 10);
-	operacion_asignacion(VAR_POS, agregar_guion_bajo(s_aux), &numeracion, &polaca);
-	// @es_primera_aparicion = 1
-	operacion_asignacion(VAR_ES_PRI, FIN_VAR_ES_PRI_LEXEMA, &numeracion, &polaca);
-	// Creamos etiqueta para el salto
-	insertar_polaca(agregar_fin_etiqueta(crear_etiqueta(numeracion)), &numeracion, &polaca);
+	algoritmo_busqueda_aparicion($1, &_contador, &numeracion, &polaca);
 }
 
 | lista COMA CTE
@@ -195,26 +176,8 @@ lista: CTE
 	
 	/* ALGORITMO PARA ENCONTRAR POSICION */
 	
-	// @contador = @contador + 1
-	_contador++;
-	// if(@es_primera_aparicion == 0 and @aux == #n)
-	insertar_polaca(VAR_ES_PRI, &numeracion, &polaca);
-	insertar_polaca(INI_VAR_ES_PRI_LEXEMA, &numeracion, &polaca);
-	insertar_polaca(CMP, &numeracion, &polaca);
-	insertar_polaca(BNE, &numeracion, &polaca);
-	insertar_polaca(crear_etiqueta(numeracion + SALTO_VERIFICACION_VAR_ES_PRI), &numeracion, &polaca);
-	insertar_polaca(VAR_AUX, &numeracion, &polaca);
-	insertar_polaca($3, &numeracion, &polaca);
-	insertar_polaca(CMP, &numeracion, &polaca);
-	insertar_polaca(BNE, &numeracion, &polaca);
-	insertar_polaca(crear_etiqueta(numeracion + SALTO_VERIFICACION_VAR_AUX), &numeracion, &polaca);
-	// @posicion = @contador
-	itoa(_contador, s_aux, 10);
-	operacion_asignacion(VAR_POS, agregar_guion_bajo(s_aux), &numeracion, &polaca);
-	// @es_primera_aparicion = 1
-	operacion_asignacion(VAR_ES_PRI, FIN_VAR_ES_PRI_LEXEMA, &numeracion, &polaca);
-	// Creamos etiqueta para el salto
-	insertar_polaca(agregar_fin_etiqueta(crear_etiqueta(numeracion)), &numeracion, &polaca);
+	algoritmo_busqueda_aparicion($3, &_contador, &numeracion, &polaca);
+	
 }
 ;
 

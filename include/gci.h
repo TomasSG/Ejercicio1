@@ -7,6 +7,7 @@
 #include "./constantes.h"
 #include "./lista_ts.h"
 #include "./lista_polaca.h"
+#include "./lexico.h"
 
 char* obtener_branch(const char*);
 void invertir_branch(t_lista_polaca*, int);
