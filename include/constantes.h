@@ -42,6 +42,10 @@
 #define CARACTER_ESTANDARIZAR '_'
 
 /* POLACA */
+#define OP_ASIGNACION "="
+
+#define ELEMENTO_VACIO " "
+
 #define INPUT "READ"
 #define OUTPUT "WRITE"
 
@@ -65,5 +69,14 @@
 #define BNE "BNE"
 
 #define CANTIDAD_DIGITOS_NUMERO 5
+#define VALOR_CRITICO_PIVOT "1"
+
+#define VAR_AUX "@aux"
+#define VAR_POS "@posicion"
+#define VAR_ES_PRI "@es_primera_aparicion"
+
+#define MSJ_ERROR_PIVOT "El valor debe ser >= 1"
+#define MSJ_ERROR_LISTA_VACIA "La lista esta vacia"
+#define MSJ_ERROR_NO_ENCONTRADO "Elemento no encontrado"
 
 #endif

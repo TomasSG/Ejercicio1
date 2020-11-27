@@ -58,6 +58,9 @@ sent: read		{puts("R3: SENT -> READ");}
 read: READ ID
 {
 	puts("R4: READ -> read id");
+	
+	insertar_polaca($2, &numeracion, &polaca);
+	insertar_polaca(INPUT, &numeracion, &polaca);
 }
 ;
 
@@ -81,6 +84,25 @@ posicion: POSICION PARA ID PYC CA lista CC PARC
 lista: CTE
 {
 	puts("R8: LISTA -> cte");
+	
+	insertar_polaca(VAR_AUX, &numeracion, &polaca);
+	insertar_polaca(ELEMENTO_VACIO, &numeracion, &polaca);
+	_nro_celda_aux = numeracion;
+	insertar_polaca(OP_ASIGNACION, &numeracion, &polaca);
+	
+	insertar_polaca(VAR_AUX, &numeracion, &polaca);
+	insertar_polaca(VALOR_CRITICO_PIVOT, &numeracion, &polaca);
+	insertar_polaca(CMP, &numeracion, &polaca);
+	insertar_polaca(BGE, &numeracion, &polaca);
+	insertar_polaca(crear_etiqueta(numeracion + 5), &numeracion, &polaca);
+	insertar_polaca(MSJ_ERROR_PIVOT, &numeracion, &polaca);
+	insertar_polaca(OUTPUT, &numeracion, &polaca);
+	insertar_polaca(BI, &numeracion, &polaca);
+	insertar_polaca(ELEMENTO_VACIO, &numeracion, &polaca);
+	//Falta apilar
+	
+	
+	
 }
 
 | lista COMA CTE
@@ -92,6 +114,9 @@ lista: CTE
 write: WRITE CTE_S
 {
 	puts("R10: WRITE -> write cte_s");
+	
+	insertar_polaca($2, &numeracion, &polaca);
+	insertar_polaca(OUTPUT, &numeracion, &polaca);
 }
 
 | WRITE ID

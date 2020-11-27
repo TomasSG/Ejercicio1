@@ -1,1 +1,1 @@
-WRITE a
+a = POSICION(b;[1, 2])
