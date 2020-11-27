@@ -68,7 +68,7 @@ void agregar_valos_contador_ts(int contador, t_lista_ts *pts)
 	int i;
 	for(i = 1; i <= contador; i++)
 	{
-		itoa(contador, s_aux, 10);
+		itoa(i, s_aux, 10);
 		insertar_ts(agregar_guion_bajo(s_aux), INTEGER, s_aux, SIN_LONGITUD, pts);
 	}
 }

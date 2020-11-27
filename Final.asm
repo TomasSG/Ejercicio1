@@ -11,15 +11,18 @@ include macros2.asm
 @posicion                          	dd	?
 _0                                 	dd	0.00
 _1                                 	dd	1.00
-_120                               	dd	120.00
+_144                               	dd	144.00
 _2                                 	dd	2.00
 _3                                 	dd	3.00
-_45                                	dd	45.00
+_4                                 	dd	4.00
+_5                                 	dd	5.00
 _El_valor_debe_ser____1            	db	"El valor debe ser >= 1"           , '$', 22 dup (?)
 _Elemento_no_encontrado            	db	"Elemento no encontrado"           , '$', 22 dup (?)
 _La_lista_esta_vacia               	db	"La lista esta vacia"              , '$', 19 dup (?)
-a                                  	dd	?
-b                                  	dd	?
+_elemento_encontrado_en_posici__n__	db	"Elemento encontrado en posición: ", '$', 34 dup (?)
+_ingrese_un_valor_pivot_mayor_o_igual_a_1__	db	"Ingrese un valor pivot mayor o igual a 1: ", '$', 42 dup (?)
+pivot                              	dd	?
+resul                              	dd	?
 
 .CODE
 START:
@@ -27,7 +30,10 @@ MOV EAX, @DATA
 MOV DS, EAX
 MOV ES, EAX
 
-FLD b
+DisplayString _ingrese_un_valor_pivot_mayor_o_igual_a_1__
+newline 1
+GetFloat pivot
+FLD pivot
 FSTP @aux
 FLD @aux
 FLD _1
@@ -36,11 +42,11 @@ FCOM
 FSTSW AX
 SAHF
 FFREE
-JNB _ET_13
+JNB _ET_17
 DisplayString _El_valor_debe_ser____1
 newline 1
-JMP _ET_84
-_ET_13:
+JMP _ET_126
+_ET_17:
 FLD _0
 FSTP @posicion
 FLD _0
@@ -52,20 +58,20 @@ FCOM
 FSTSW AX
 SAHF
 FFREE
-JNE _ET_36
+JNE _ET_40
 FLD @aux
-FLD _45
+FLD _144
 FXCH
 FCOM
 FSTSW AX
 SAHF
 FFREE
-JNE _ET_36
+JNE _ET_40
 FLD _1
 FSTP @posicion
 FLD _1
 FSTP @es_primera_aparicion
-_ET_36:
+_ET_40:
 FLD @es_primera_aparicion
 FLD _0
 FXCH
@@ -73,28 +79,7 @@ FCOM
 FSTSW AX
 SAHF
 FFREE
-JNE _ET_53
-FLD @aux
-FLD _120
-FXCH
-FCOM
-FSTSW AX
-SAHF
-FFREE
-JNE _ET_53
-FLD _2
-FSTP @posicion
-FLD _1
-FSTP @es_primera_aparicion
-_ET_53:
-FLD @es_primera_aparicion
-FLD _0
-FXCH
-FCOM
-FSTSW AX
-SAHF
-FFREE
-JNE _ET_70
+JNE _ET_57
 FLD @aux
 FLD _2
 FXCH
@@ -102,12 +87,75 @@ FCOM
 FSTSW AX
 SAHF
 FFREE
-JNE _ET_70
+JNE _ET_57
+FLD _2
+FSTP @posicion
+FLD _1
+FSTP @es_primera_aparicion
+_ET_57:
+FLD @es_primera_aparicion
+FLD _0
+FXCH
+FCOM
+FSTSW AX
+SAHF
+FFREE
+JNE _ET_74
+FLD @aux
+FLD _3
+FXCH
+FCOM
+FSTSW AX
+SAHF
+FFREE
+JNE _ET_74
 FLD _3
 FSTP @posicion
 FLD _1
 FSTP @es_primera_aparicion
-_ET_70:
+_ET_74:
+FLD @es_primera_aparicion
+FLD _0
+FXCH
+FCOM
+FSTSW AX
+SAHF
+FFREE
+JNE _ET_91
+FLD @aux
+FLD _144
+FXCH
+FCOM
+FSTSW AX
+SAHF
+FFREE
+JNE _ET_91
+FLD _4
+FSTP @posicion
+FLD _1
+FSTP @es_primera_aparicion
+_ET_91:
+FLD @es_primera_aparicion
+FLD _0
+FXCH
+FCOM
+FSTSW AX
+SAHF
+FFREE
+JNE _ET_108
+FLD @aux
+FLD _5
+FXCH
+FCOM
+FSTSW AX
+SAHF
+FFREE
+JNE _ET_108
+FLD _5
+FSTP @posicion
+FLD _1
+FSTP @es_primera_aparicion
+_ET_108:
 FLD @posicion
 FLD _0
 FXCH
@@ -115,14 +163,18 @@ FCOM
 FSTSW AX
 SAHF
 FFREE
-JNE _ET_80
+JNE _ET_118
 DisplayString _Elemento_no_encontrado
 newline 1
-JMP _ET_84
-_ET_80:
+JMP _ET_126
+_ET_118:
 FLD @posicion
-FSTP a
-_ET_84:
+FSTP resul
+DisplayString _elemento_encontrado_en_posici__n__
+newline 1
+DisplayFloat resul, 2
+newline 1
+_ET_126:
 
 MOV EAX, 4C00H
 INT 21h
