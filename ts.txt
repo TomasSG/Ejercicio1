@@ -4,7 +4,6 @@
 |LEXEMA                          |TIPO    |VALOR                           |LONGITUD|
 |--------------------------------|--------|--------------------------------|--------|
 |@aux                            |        |                                |        |
-|@es_primera_aparicion           |        |                                |        |
 |@posicion                       |        |                                |        |
 |_0                              |int     |0                               |        |
 |_1                              |int     |1                               |        |
@@ -18,8 +17,6 @@
 |_El_valor_debe_ser____1         |String  |"El valor debe ser >= 1"        |22      |
 |_Elemento_no_encontrado         |String  |"Elemento no encontrado"        |22      |
 |_La_lista_esta_vacia            |String  |"La lista esta vacia"           |19      |
-|_elemento_encontrado_en_posicion__|String  |"Elemento encontrado en posicion: "|33      |
-|_ingrese_un_valor_pivot_mayor_o_igual_a_1__|String  |"Ingrese un valor pivot mayor o igual a 1: "|42      |
 |pivot                           |        |                                |        |
 |resul                           |        |                                |        |
 |-----------------------------------------------------------------------------------|

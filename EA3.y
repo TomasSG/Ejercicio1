@@ -179,7 +179,7 @@ lista: CTE
 	
 	/* ALGORITMO PARA ENCONTRAR POSICION */
 	
-	algoritmo_busqueda_aparicion($3, &_contador, &numeracion, &polaca);
+	algoritmo_busqueda_aparicion($3, &_contador, &numeracion, &polaca, &pila_return);
 	
 }
 ;
@@ -221,11 +221,8 @@ int main(int argc, char **argv)
 	
 	insertar_ts(VAR_AUX, NULL, NULL, SIN_LONGITUD, &ts);
 	insertar_ts(VAR_POS, NULL, NULL, SIN_LONGITUD, &ts);
-	insertar_ts(VAR_ES_PRI, NULL, NULL, SIN_LONGITUD, &ts);
 	
 	insertar_ts(INI_VAR_POS_LEXEMA, INTEGER, INI_VAR_POS_VALOR, SIN_LONGITUD, &ts);
-	insertar_ts(INI_VAR_ES_PRI_LEXEMA, INTEGER, INI_VAR_ES_PRI_VALOR, SIN_LONGITUD, &ts);
-	insertar_ts(FIN_VAR_ES_PRI_LEXEMA, INTEGER, FIN_VAR_ES_PRI_VALOR, SIN_LONGITUD, &ts);
 	insertar_ts(VALOR_CRITICO_PIVOT_LEXEMA, INTEGER, VALOR_CRITICO_PIVOT_VALOR, SIN_LONGITUD, &ts);
 	
 	crear_lista_polaca(&polaca);

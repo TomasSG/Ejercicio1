@@ -84,7 +84,7 @@
 #define VAR_POS "@posicion"
 
 // Valores de variables auxiliares
-#define INI_VAR_POS_VALOR "0""
+#define INI_VAR_POS_VALOR "0"
 #define VALOR_CRITICO_PIVOT_VALOR "1"
 
 #define INI_VAR_POS_LEXEMA "_0"
@@ -101,7 +101,7 @@
 
 // Saltos 
 #define SALTO_VERIFICACION_PIVOT 5
-#define SALTO_VERIFICACION_VAR_AUX 5
+#define SALTO_VERIFICACION_VAR_AUX 6
 
 
 // Otros
