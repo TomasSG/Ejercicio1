@@ -19,6 +19,9 @@ void generar_assembler(const char *path_assembler, const t_lista_polaca *p_polac
 	fclose(pf);
 }
 
+
+/* FUNIONES GENERAR */
+
 void generar_encabezado(FILE *pf)
 {
 	fprintf(pf, "include number.asm\n");
@@ -61,47 +64,45 @@ void generar_codigo(FILE *pf, const t_lista_polaca *pl)
 	fprintf(pf, "MOV DS, EAX\n");
 	fprintf(pf, "MOV ES, EAX\n\n");
 
-	/*
 	while(*pl)
     {
-		
-        if(es_operador_aritmetico((*pl)->dato.s1))
+		if(es_etiqueta((*pl)->dato.s))
 		{
-			operacion_aritmetica(pf, (*pl)->dato.s1, (*pl)->dato.s2, (*pl)->dato.s3);
-		} 
-		else if(es_etiqueta((*pl)->dato.s1))
-		{
-			fprintf(pf, "%s:\n", (*pl)->dato.s1);
+			fprintf(pf, "%s\n", (*pl)->dato.s);
 		}
-		else if(es_factor((*pl)->dato.s2, (*pl)->dato.s3))
+		else if(es_asignacion((*pl)->dato.s))
 		{
-			fprintf(pf, "%s %s\n", CMD_PUSH, (*pl)->dato.s1);
+			pl=&(*pl)->psig;
+			fprintf(pf, "%s %s\n", CMD_POP, (*pl)->dato.s);
 		}
-		else if(es_asignacion((*pl)->dato.s1))
+		else if(es_salida((*pl)->dato.s))
 		{
-			operacion_asignacion(pf, (*pl)->dato.s2, (*pl)->dato.s3);
+			pl=&(*pl)->psig;
+			asm_salida(pf, (*pl)->dato.s);
 		}
-		else if(es_salida((*pl)->dato.s1))
+		else if(es_entrada((*pl)->dato.s))
 		{
-			operacion_salida(pf, (*pl)->dato.s2);
+			pl=&(*pl)->psig;
+			fprintf(pf, "%s %s\n", CMD_IN_FLOAT, (*pl)->dato.s);
 		}
-		else if(es_entrada((*pl)->dato.s1))
+		else if(es_comparacion((*pl)->dato.s))
 		{
-			fprintf(pf, "%s %s\n", CMD_IN_FLOAT, (*pl)->dato.s2);
+			asm_comparacion(pf);
 		}
-		else if(es_comparacion((*pl)->dato.s1))
+		else if(es_salto((*pl)->dato.s))
 		{
-			operacion_comparacion(pf, (*pl)->dato.s2);
+			char *cmd_salto = obtener_cmd_salto((*pl)->dato.s);
+			pl=&(*pl)->psig;
+			fprintf(pf, "%s %s\n", cmd_salto, (*pl)->dato.s);
 		}
-		else if(es_salto((*pl)->dato.s1))
+		else
 		{
-			fprintf(pf, "%s %s\n", obtener_cmd_salto((*pl)->dato.s1), transformar_a_etiqueta((*pl)->dato.s2));
+			fprintf(pf, "%s %s\n", CMD_PUSH, (*pl)->dato.s);
 		}
 		
         
 		pl=&(*pl)->psig;
     }
-	*/
 }
 
 void generar_final(FILE *pf)
@@ -111,46 +112,11 @@ void generar_final(FILE *pf)
 	fprintf(pf, "END START");
 }
 
+/* FUNIONES ES_ */
 
 int es_constante(const char *s)
 {
 	return strncmp(s, MARCADOR_CONSTANTE, strlen(MARCADOR_CONSTANTE)) == 0;
-}
-
-/*
-void operacion_salida(FILE *pf, const char *s)
-{
-	if(es_constante(s))
-	{
-		fprintf(pf, "%s %s\n", CMD_OUT_STRING, s);
-	}
-	else
-	{	
-		fprintf(pf, "%s %s, 2\n", CMD_OUT_FLOAT, s);
-	}
-	fprintf(pf, "%s\n", CMD_NUEVA_LINEA);
-}
-
-void operacion_comparacion(FILE *pf, const char *s2)
-{
-	if(*s2 != '[')
-	{
-		fprintf(pf, "%s %s\n", CMD_PUSH, s2);
-	}
-	fprintf(pf, "%s\n", CMD_XCH);
-	fprintf(pf, "%s\n", CMD_CMP);
-	fprintf(pf, "%s\n", CMD_STSW);
-	fprintf(pf, "%s\n", CMD_SAHF);
-	fprintf(pf, "%s\n", CMD_LIBERAR);
-}
-
-void operacion_asignacion(FILE *pf, const char *s1, const char *s2)
-{
-	if(*s2 != '[')
-	{
-		fprintf(pf, "%s %s\n", CMD_PUSH, s2);
-	}
-	fprintf(pf, "%s %s\n", CMD_POP, s1);
 }
 
 int es_etiqueta(const char *s)
@@ -160,17 +126,17 @@ int es_etiqueta(const char *s)
 
 int es_asignacion(const char *s)
 {
-	return strcmp(s, SIGNO_IGUAL) == 0;
+	return strcmp(s, OP_ASIGNACION) == 0;
 }
 
 int es_salida(const char *s)
 {
-	return strcmp(s, SALIDA) == 0;
+	return strcmp(s, OUTPUT) == 0;
 }
 
 int es_entrada(const char *s)
 {
-	return strcmp(s, ENTRADA) == 0;
+	return strcmp(s, INPUT) == 0;
 }
 
 int es_comparacion(const char *s)
@@ -183,6 +149,33 @@ int es_salto(const char *s)
 	return strcmp(s, BI) == 0 || strcmp(s, BLT) == 0 || strcmp(s, BLE) == 0 || strcmp(s, BGT) == 0 || strcmp(s, BGE) == 0 || strcmp(s, BEQ) == 0 || strcmp(s, BNE) == 0; 
 }
 
+
+/* FUNCIONES OPERACIONES */
+
+void asm_salida(FILE *pf, const char *s)
+{
+	if(es_constante(s))
+	{
+		fprintf(pf, "%s %s\n", CMD_OUT_STRING, s);
+	}
+	else
+	{	
+		fprintf(pf, "%s %s, 2\n", CMD_OUT_FLOAT, s);
+	}
+	fprintf(pf, "%s\n", CMD_NUEVA_LINEA);
+}
+
+
+void asm_comparacion(FILE *pf)
+{
+	fprintf(pf, "%s\n", CMD_XCH);
+	fprintf(pf, "%s\n", CMD_CMP);
+	fprintf(pf, "%s\n", CMD_STSW);
+	fprintf(pf, "%s\n", CMD_SAHF);
+	fprintf(pf, "%s\n", CMD_LIBERAR);
+}
+
+/* FUNCIONES AUXILIARS */
 
 char* obtener_cmd_salto(const char *s)
 {
@@ -216,4 +209,3 @@ char* obtener_cmd_salto(const char *s)
 	}
 	return NULL;
 }
-*/

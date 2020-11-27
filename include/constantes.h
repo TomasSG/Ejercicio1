@@ -134,4 +134,17 @@
 #define CMD_NUEVA_LINEA "newline 1"
 #define CMD_IN_FLOAT "GetFloat"
 
+// Comparaciones
+#define CMD_CMP "FCOM"
+#define CMD_STSW "FSTSW AX"
+#define CMD_SAHF "SAHF"
+
+#define CMD_BI "JMP"
+#define CMD_BLT "JNAE"
+#define CMD_BLE "JBE"
+#define CMD_BGT "JNBE"
+#define CMD_BGE "JNB"
+#define CMD_BEQ "JE"
+#define CMD_BNE "JNE"
+
 #endif

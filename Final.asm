@@ -26,6 +26,102 @@ MOV EAX, @DATA
 MOV DS, EAX
 MOV ES, EAX
 
+FLD b
+FSTP @aux
+FLD @aux
+FLD _1
+FXCH
+FCOM
+FSTSW AX
+SAHF
+FFREE
+JNB _ET_13
+DisplayString _El_valor_debe_ser____1
+newline 1
+JMP _ET_84
+_ET_13:
+FLD _0
+FSTP @posicion
+FLD _0
+FSTP @es_primera_aparicion
+FLD @es_primera_aparicion
+FLD _0
+FXCH
+FCOM
+FSTSW AX
+SAHF
+FFREE
+JNE _ET_36
+FLD @aux
+FLD _45
+FXCH
+FCOM
+FSTSW AX
+SAHF
+FFREE
+JNE _ET_36
+FLD _1
+FSTP @posicion
+FLD _1
+FSTP @es_primera_aparicion
+_ET_36:
+FLD @es_primera_aparicion
+FLD _0
+FXCH
+FCOM
+FSTSW AX
+SAHF
+FFREE
+JNE _ET_53
+FLD @aux
+FLD _120
+FXCH
+FCOM
+FSTSW AX
+SAHF
+FFREE
+JNE _ET_53
+FLD _2
+FSTP @posicion
+FLD _1
+FSTP @es_primera_aparicion
+_ET_53:
+FLD @es_primera_aparicion
+FLD _0
+FXCH
+FCOM
+FSTSW AX
+SAHF
+FFREE
+JNE _ET_70
+FLD @aux
+FLD _2
+FXCH
+FCOM
+FSTSW AX
+SAHF
+FFREE
+JNE _ET_70
+FLD _3
+FSTP @posicion
+FLD _1
+FSTP @es_primera_aparicion
+_ET_70:
+FLD @posicion
+FLD _0
+FXCH
+FCOM
+FSTSW AX
+SAHF
+FFREE
+JNE _ET_80
+DisplayString _Elemento_no_encontrado
+newline 1
+JMP _ET_84
+_ET_80:
+FLD @posicion
+FSTP a
+_ET_84:
 
 MOV EAX, 4C00H
 INT 21h
