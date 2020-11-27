@@ -8,6 +8,7 @@
 #include "./lexico.h"
 #include "./lista_ts.h"
 #include "./lista_polaca.h"
+#include "./pila.h"
 #include "./gci.h"
 #include "../y.tab.h"
 
@@ -16,6 +17,7 @@ extern FILE *yyin;
 
 t_lista_ts ts;
 t_lista_polaca polaca;
+t_pila pila_celdas;
 int i;
 int numeracion;
 int _contador;

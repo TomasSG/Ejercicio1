@@ -17,6 +17,10 @@
 #define LISTA_LLENA -1
 #define LISTA_DUPLICADO -2
 
+/* PILA */
+#define PILA_LLENA -3
+#define PILA_VACIA -4
+
 /* GENERAL */
 #define CANTIDAD_ITOA 500
 

@@ -36,6 +36,15 @@ s: prog
 {
 	puts("R0: S -> PROG");
 	puts("COMPILACION EXITOSA");
+	
+	
+	
+	/* INSERTAMOS EN TODOS LOS EXIT LOS SALTOS A ESTA ETIQUETA */
+	
+	// Creamos etiqueta para el salto
+	insertar_polaca(crear_etiqueta(numeracion), &numeracion, &polaca);
+	// Por cada elemento en la pila, escribimos en nro de celda actual en dicha celda
+	
 }
 ;
 
@@ -86,7 +95,7 @@ posicion: POSICION PARA ID PYC CA lista CC PARC
 	insertar_polaca(CMP, &numeracion, &polaca);
 	insertar_polaca(BNE, &numeracion, &polaca);
 	insertar_polaca(crear_etiqueta(numeracion + SALTO_VERIFICACION_VAR_POS), &numeracion, &polaca);
-	// WRITE "Elemento no enconctrado"
+	// WRITE "Elemento no encontrado"
 	insertar_polaca(MSJ_ERROR_NO_ENCONTRADO_LEXEMA, &numeracion, &polaca);
 	insertar_polaca(OUTPUT, &numeracion, &polaca);
 	// exit
@@ -143,7 +152,7 @@ lista: CTE
 	// exit
 	insertar_polaca(BI, &numeracion, &polaca);
 	insertar_polaca(ELEMENTO_VACIO, &numeracion, &polaca);
-	//Falta apilar
+	apilar(&pila_celdas, &numeracion);
 	// Creamos etiqueta para el salto
 	insertar_polaca(crear_etiqueta(numeracion), &numeracion, &polaca);
 	
@@ -251,6 +260,7 @@ int main(int argc, char **argv)
 	
 	// Inicialización de estructuras y variables
 	crear_lista_ts(&ts);
+	crear_pila(&pila_celdas);
 	
 	insertar_ts(MSJ_ERROR_PIVOT_LEXEMA, STRING, MSJ_ERROR_PIVOT_VALOR, strlen(MSJ_ERROR_PIVOT_VALOR) - CANTIDAD_COMILLAS, &ts);
 	insertar_ts(MSJ_ERROR_LISTA_VACIA_LEXEMA, STRING, MSJ_ERROR_LISTA_VACIA_VALOR, strlen(MSJ_ERROR_LISTA_VACIA_VALOR) - CANTIDAD_COMILLAS, &ts);
@@ -284,6 +294,8 @@ int main(int argc, char **argv)
 	
 	guardar_lista_en_archivo_ts(&ts, PATH_ARCHIVO_TS); // Solo para testing
 	vaciar_lista_ts(&ts);
+	
+	vaciar_pila(&pila_celdas);
 	
 	fclose(yyin);
 	
