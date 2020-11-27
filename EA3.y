@@ -101,7 +101,6 @@ posicion: POSICION PARA ID PYC CA lista CC PARC
 	operacion_output(MSJ_ERROR_NO_ENCONTRADO_LEXEMA, &numeracion, &polaca);
 	// exit
 	operacion_salto_incondicional(&numeracion, &polaca, &pila_exit);
-	apilar(&pila_exit, &numeracion);
 	
 	// Escribir en nro_celda_aux el nro de celda actual
 	cambiar_elemento(&polaca, _nro_celda_aux, $3);
@@ -157,7 +156,6 @@ lista: CTE
 	operacion_output(MSJ_ERROR_PIVOT_LEXEMA, &numeracion, &polaca);
 	// exit
 	operacion_salto_incondicional(&numeracion, &polaca, &pila_exit);
-	apilar(&pila_exit, &numeracion);
 	// Creamos etiqueta para el salto
 	insertar_polaca(agregar_fin_etiqueta(crear_etiqueta(numeracion)), &numeracion, &polaca);
 	
