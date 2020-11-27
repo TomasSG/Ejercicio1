@@ -101,13 +101,58 @@ lista: CTE
 	insertar_polaca(ELEMENTO_VACIO, &numeracion, &polaca);
 	//Falta apilar
 	
+	insertar_polaca(VAR_POS, &numeracion, &polaca);
+	insertar_polaca(INI_VAR_POS, &numeracion, &polaca);
+	insertar_polaca(OP_ASIGNACION, &numeracion, &polaca);
+	_contador = 0;
+	insertar_polaca(VAR_ES_PRI, &numeracion, &polaca);
+	insertar_polaca(INI_VAR_ES_PRI, &numeracion, &polaca);
+	insertar_polaca(OP_ASIGNACION, &numeracion, &polaca);
 	
-	
+	_contador++;
+	insertar_polaca(VAR_ES_PRI, &numeracion, &polaca);
+	insertar_polaca(INI_VAR_ES_PRI, &numeracion, &polaca);
+	insertar_polaca(CMP, &numeracion, &polaca);
+	insertar_polaca(BNE, &numeracion, &polaca);
+	insertar_polaca(crear_etiqueta(numeracion + 12), &numeracion, &polaca);
+	insertar_polaca(VAR_AUX, &numeracion, &polaca);
+	insertar_polaca($1, &numeracion, &polaca);
+	insertar_polaca(CMP, &numeracion, &polaca);
+	insertar_polaca(BNE, &numeracion, &polaca);
+	insertar_polaca(crear_etiqueta(numeracion + 7), &numeracion, &polaca);
+	insertar_polaca(VAR_POS, &numeracion, &polaca);
+	char *aux[CANTIDAD_ITOA]
+	itoa(aux, _contador, 10);
+	insertar_polaca(aux, &numeracion, &polaca);
+	insertar_polaca(OP_ASIGNACION, &numeracion, &polaca);
+	insertar_polaca(VAR_ES_PRI, &numeracion, &polaca);
+	insertar_polaca(FIN_VAR_ES_PRI, &numeracion, &polaca);
+	insertar_polaca(OP_ASIGNACION, &numeracion, &polaca);
 }
 
 | lista COMA CTE
 {
 	puts("R9: LISTA -> LISTA coma cte");	
+	
+	_contador++;
+	insertar_polaca(VAR_ES_PRI, &numeracion, &polaca);
+	insertar_polaca(INI_VAR_ES_PRI, &numeracion, &polaca);
+	insertar_polaca(CMP, &numeracion, &polaca);
+	insertar_polaca(BNE, &numeracion, &polaca);
+	insertar_polaca(crear_etiqueta(numeracion + 12), &numeracion, &polaca);
+	insertar_polaca(VAR_AUX, &numeracion, &polaca);
+	insertar_polaca($1, &numeracion, &polaca);
+	insertar_polaca(CMP, &numeracion, &polaca);
+	insertar_polaca(BNE, &numeracion, &polaca);
+	insertar_polaca(crear_etiqueta(numeracion + 7), &numeracion, &polaca);
+	insertar_polaca(VAR_POS, &numeracion, &polaca);
+	char *aux[CANTIDAD_ITOA]
+	itoa(aux, _contador, 10);
+	insertar_polaca(aux, &numeracion, &polaca);
+	insertar_polaca(OP_ASIGNACION, &numeracion, &polaca);
+	insertar_polaca(VAR_ES_PRI, &numeracion, &polaca);
+	insertar_polaca(FIN_VAR_ES_PRI, &numeracion, &polaca);
+	insertar_polaca(OP_ASIGNACION, &numeracion, &polaca);
 }
 ;
 

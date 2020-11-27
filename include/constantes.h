@@ -75,6 +75,10 @@
 #define VAR_POS "@posicion"
 #define VAR_ES_PRI "@es_primera_aparicion"
 
+#define INI_VAR_POS "0"
+#define INI_VAR_ES_PRI "0"
+#define FIN_VAR_ES_PRI "1"
+
 #define MSJ_ERROR_PIVOT "El valor debe ser >= 1"
 #define MSJ_ERROR_LISTA_VACIA "La lista esta vacia"
 #define MSJ_ERROR_NO_ENCONTRADO "Elemento no encontrado"
