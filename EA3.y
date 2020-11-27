@@ -232,7 +232,6 @@ int main(int argc, char **argv)
 	guardar_lista_en_archivo_polaca(&polaca, PATH_ARCHIVO_INTERMEDIO);
 	vaciar_lista_polaca(&polaca);
 	
-	guardar_lista_en_archivo_ts(&ts, PATH_ARCHIVO_TS); // Solo para testing
 	vaciar_lista_ts(&ts);
 	
 	vaciar_pila(&pila_exit);

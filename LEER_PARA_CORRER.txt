@@ -1,0 +1,2 @@
+Si se quiere generar un EA3.exe, debe usar generar_compilador.bat
+Si se quiere correr el archivo Final.asm, debe moverlo a la carpeta assembler y correr desde DosBox el archivo correr_asm.bat

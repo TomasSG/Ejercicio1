@@ -18,7 +18,6 @@ EA3.exe ./test.txt
 echo.
 echo -----------------------------------------------------------------
 pause
-del EA3.exe
 del lex.yy.c
 del y.output
 del y.tab.c
