@@ -82,10 +82,7 @@ asig: ID ASIGNA posicion
 {
 	puts("R5: ASIG -> id asigna POSICION");
 	
-	insertar_polaca(VAR_POS, &numeracion, &polaca);
-	insertar_polaca(OP_ASIGNACION, &numeracion, &polaca);
-	insertar_polaca($1, &numeracion, &polaca);
-	
+	operacion_asignacion($1, VAR_POS, &numeracion, &polaca);
 }
 ;
 
@@ -102,8 +99,7 @@ posicion: POSICION PARA ID PYC CA lista CC PARC
 	insertar_polaca(BNE, &numeracion, &polaca);
 	insertar_polaca(crear_etiqueta(numeracion + SALTO_VERIFICACION_VAR_POS), &numeracion, &polaca);
 	// WRITE "Elemento no encontrado"
-	insertar_polaca(OUTPUT, &numeracion, &polaca);
-	insertar_polaca(MSJ_ERROR_NO_ENCONTRADO_LEXEMA, &numeracion, &polaca);
+	operacion_output(MSJ_ERROR_NO_ENCONTRADO_LEXEMA, &numeracion, &polaca);
 	// exit
 	insertar_polaca(BI, &numeracion, &polaca);
 	insertar_polaca(ELEMENTO_VACIO, &numeracion, &polaca);
@@ -122,9 +118,8 @@ posicion: POSICION PARA ID PYC CA lista CC PARC
 	
 	/* ERROR DE LISTA ES VACIA */
 	
-	// WRITE "La lista esta vaica"
-	insertar_polaca(OUTPUT, &numeracion, &polaca);
-	insertar_polaca(MSJ_ERROR_LISTA_VACIA_LEXEMA, &numeracion, &polaca);
+	// WRITE "La lista esta vacia"
+	operacion_output(MSJ_ERROR_LISTA_VACIA_LEXEMA, &numeracion, &polaca);
 	// exit
 	insertar_polaca(BI, &numeracion, &polaca);
 	insertar_polaca(ELEMENTO_VACIO, &numeracion, &polaca);
@@ -153,8 +148,7 @@ lista: CTE
 	insertar_polaca(BGE, &numeracion, &polaca);
 	insertar_polaca(crear_etiqueta(numeracion + SALTO_VERIFICACION_PIVOT), &numeracion, &polaca);
 	// WRITE "El valor debe ser >= 1"
-	insertar_polaca(OUTPUT, &numeracion, &polaca);
-	insertar_polaca(MSJ_ERROR_PIVOT_LEXEMA, &numeracion, &polaca);
+	operacion_output(MSJ_ERROR_PIVOT_LEXEMA, &numeracion, &polaca);
 	// exit
 	insertar_polaca(BI, &numeracion, &polaca);
 	insertar_polaca(ELEMENTO_VACIO, &numeracion, &polaca);
@@ -165,15 +159,11 @@ lista: CTE
 	/* INICIALIZACION DE RESTOS DE VARIABLES */
 	
 	// @posicion = 0
-	insertar_polaca(INI_VAR_POS_LEXEMA, &numeracion, &polaca);
-	insertar_polaca(OP_ASIGNACION, &numeracion, &polaca);
-	insertar_polaca(VAR_POS, &numeracion, &polaca);
+	operacion_asignacion(VAR_POS, INI_VAR_POS_LEXEMA, &numeracion, &polaca);
 	// @contador = 0
 	_contador = 0;
 	// @es_primera_poiscion = 0;
-	insertar_polaca(INI_VAR_ES_PRI_LEXEMA, &numeracion, &polaca);
-	insertar_polaca(OP_ASIGNACION, &numeracion, &polaca);
-	insertar_polaca(VAR_ES_PRI, &numeracion, &polaca);
+	operacion_asignacion(VAR_ES_PRI, INI_VAR_ES_PRI_LEXEMA, &numeracion, &polaca);
 	
 	/* ALGORITMO PARA ENCONTRAR POSICION */
 	
@@ -192,13 +182,9 @@ lista: CTE
 	insertar_polaca(crear_etiqueta(numeracion + SALTO_VERIFICACION_VAR_AUX), &numeracion, &polaca);
 	// @posicion = @contador
 	itoa(_contador, s_aux, 10);
-	insertar_polaca(agregar_guion_bajo(s_aux), &numeracion, &polaca);
-	insertar_polaca(OP_ASIGNACION, &numeracion, &polaca);
-	insertar_polaca(VAR_POS, &numeracion, &polaca);
+	operacion_asignacion(VAR_POS, agregar_guion_bajo(s_aux), &numeracion, &polaca);
 	// @es_primera_aparicion = 1
-	insertar_polaca(FIN_VAR_ES_PRI_LEXEMA, &numeracion, &polaca);
-	insertar_polaca(OP_ASIGNACION, &numeracion, &polaca);
-	insertar_polaca(VAR_ES_PRI, &numeracion, &polaca);
+	operacion_asignacion(VAR_ES_PRI, FIN_VAR_ES_PRI_LEXEMA, &numeracion, &polaca);
 	// Creamos etiqueta para el salto
 	insertar_polaca(agregar_fin_etiqueta(crear_etiqueta(numeracion)), &numeracion, &polaca);
 }
@@ -224,13 +210,9 @@ lista: CTE
 	insertar_polaca(crear_etiqueta(numeracion + SALTO_VERIFICACION_VAR_AUX), &numeracion, &polaca);
 	// @posicion = @contador
 	itoa(_contador, s_aux, 10);
-	insertar_polaca(agregar_guion_bajo(s_aux), &numeracion, &polaca);
-	insertar_polaca(OP_ASIGNACION, &numeracion, &polaca);
-	insertar_polaca(VAR_POS, &numeracion, &polaca);
+	operacion_asignacion(VAR_POS, agregar_guion_bajo(s_aux), &numeracion, &polaca);
 	// @es_primera_aparicion = 1
-	insertar_polaca(FIN_VAR_ES_PRI_LEXEMA, &numeracion, &polaca);
-	insertar_polaca(OP_ASIGNACION, &numeracion, &polaca);
-	insertar_polaca(VAR_ES_PRI, &numeracion, &polaca);
+	operacion_asignacion(VAR_ES_PRI, FIN_VAR_ES_PRI_LEXEMA, &numeracion, &polaca);
 	// Creamos etiqueta para el salto
 	insertar_polaca(agregar_fin_etiqueta(crear_etiqueta(numeracion)), &numeracion, &polaca);
 }
@@ -240,16 +222,14 @@ write: WRITE CTE_S
 {
 	puts("R10: WRITE -> write cte_s");
 	
-	insertar_polaca(OUTPUT, &numeracion, &polaca);
-	insertar_polaca($2, &numeracion, &polaca);
+	operacion_output($2, &numeracion, &polaca);
 }
 
 | WRITE ID
 {
 	puts("R11: WRITE -> write id");
 	
-	insertar_polaca(OUTPUT, &numeracion, &polaca);
-	insertar_polaca($2, &numeracion, &polaca);
+	operacion_output($2, &numeracion, &polaca);
 }
 ;
 
